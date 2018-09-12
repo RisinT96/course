@@ -1318,7 +1318,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              1/12
+              1/13
             </aside>
           </footer>
         </div>
@@ -1334,7 +1334,7 @@ aside {
             
             <section><p>Find all the prime numbers until 'end' in a given amount of 'threads'.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">calc_primes</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">calc_primes</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">47</span><span class="p">]</span>
 </pre></div>
 </td></tr></table>
@@ -1354,7 +1354,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              2/12
+              2/13
             </aside>
           </footer>
         </div>
@@ -1387,10 +1387,10 @@ aside {
 17
 18
 19
-20</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
 
 <span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c"># 1 is special</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># 1 is special</span>
         <span class="k">return</span> <span class="bp">False</span>
 
     <span class="n">divisors</span> <span class="o">=</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -1424,7 +1424,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              3/12
+              3/13
             </aside>
           </footer>
         </div>
@@ -1470,7 +1470,7 @@ $ netcat localhost 5000
             </aside>
             
             <aside class="page_number">
-              4/12
+              4/13
             </aside>
           </footer>
         </div>
@@ -1504,11 +1504,11 @@ $ netcat localhost 5000
 18
 19
 20
-21</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEPORT</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1521,10 +1521,10 @@ $ netcat localhost 5000
         <span class="n">tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
-            <span class="k">pass</span>  <span class="c"># simulate request processing</span>
+            <span class="k">pass</span>  <span class="c1"># simulate request processing</span>
         <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="s">&#39;&lt;{0}, took {1:.1f} ms&gt;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">dt</span><span class="o">*</span><span class="mf">1e3</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="s1">&#39;&lt;{0}, took {1:.1f} ms&gt;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">dt</span><span class="o">*</span><span class="mf">1e3</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1542,7 +1542,7 @@ $ netcat localhost 5000
             </aside>
             
             <aside class="page_number">
-              5/12
+              5/13
             </aside>
           </footer>
         </div>
@@ -1577,11 +1577,11 @@ $ netcat localhost 5000
 19
 20
 21
-22</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEPORT</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1595,10 +1595,10 @@ $ netcat localhost 5000
         <span class="n">tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
         <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
-            <span class="k">pass</span>  <span class="c"># simulate request processing</span>
+            <span class="k">pass</span>  <span class="c1"># simulate request processing</span>
         <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="s">&#39;&lt;{0}, took {1:.1f} ms&gt;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">dt</span><span class="o">*</span><span class="mf">1e3</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="s1">&#39;&lt;{0}, took {1:.1f} ms&gt;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">dt</span><span class="o">*</span><span class="mf">1e3</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1616,7 +1616,7 @@ $ netcat localhost 5000
             </aside>
             
             <aside class="page_number">
-              6/12
+              6/13
             </aside>
           </footer>
         </div>
@@ -1650,27 +1650,27 @@ $ netcat localhost 5000
 18
 19
 20
-21</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>nc localhost 5000
-&lt;1, took 17.8 ms&gt;
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ nc localhost <span class="m">5000</span>
+&lt;<span class="m">1</span>, took <span class="m">17</span>.8 ms&gt;
 
-<span class="nv">$ </span>nc localhost 5000
-&lt;2, took 17.5 ms&gt;
+$ nc localhost <span class="m">5000</span>
+&lt;<span class="m">2</span>, took <span class="m">17</span>.5 ms&gt;
 
-<span class="nv">$ </span><span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span> <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span>
-&lt;3, took 62.8 ms&gt;
-&lt;3, took 61.3 ms&gt;
+$ <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span> <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span>
+&lt;<span class="m">3</span>, took <span class="m">62</span>.8 ms&gt;
+&lt;<span class="m">3</span>, took <span class="m">61</span>.3 ms&gt;
 
-<span class="nv">$ </span><span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span> <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span>
-&lt;4, took 66.1 ms&gt;
-&lt;4, took 64.4 ms&gt;
+$ <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span> <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span>
+&lt;<span class="m">4</span>, took <span class="m">66</span>.1 ms&gt;
+&lt;<span class="m">4</span>, took <span class="m">64</span>.4 ms&gt;
 
-<span class="nv">$ </span><span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span> <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span> <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span>
-&lt;5, took 105.6 ms&gt;
-&lt;5, took 111.5 ms&gt;
-&lt;5, took 110.3 ms&gt;
+$ <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span> <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span> <span class="o">(</span>nc localhost <span class="m">5000</span> <span class="p">&amp;</span><span class="o">)</span><span class="p">;</span>
+&lt;<span class="m">5</span>, took <span class="m">105</span>.6 ms&gt;
+&lt;<span class="m">5</span>, took <span class="m">111</span>.5 ms&gt;
+&lt;<span class="m">5</span>, took <span class="m">110</span>.3 ms&gt;
 
-<span class="nv">$ </span>nc localhost 5000
-&lt;6, took 17.4 ms&gt;
+$ nc localhost <span class="m">5000</span>
+&lt;<span class="m">6</span>, took <span class="m">17</span>.4 ms&gt;
 </pre></div>
 </td></tr></table></section>
             
@@ -1688,7 +1688,7 @@ $ netcat localhost 5000
             </aside>
             
             <aside class="page_number">
-              7/12
+              7/13
             </aside>
           </footer>
         </div>
@@ -1729,7 +1729,7 @@ our tasks to cooperate around I/O events.</p>
             </aside>
             
             <aside class="page_number">
-              8/12
+              8/13
             </aside>
           </footer>
         </div>
@@ -1757,20 +1757,20 @@ our tasks to cooperate around I/O events.</p>
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">gevent</span> <span class="kn">import</span> <span class="n">socket</span>
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">gevent</span> <span class="kn">import</span> <span class="n">socket</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="n">addr</span><span class="p">):</span>
-<span class="o">...</span>     <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">create_connection</span><span class="p">((</span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
+<span class="o">...</span>     <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">create_connection</span><span class="p">((</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">request</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
-<span class="s">&#39;&lt;10, took 20.1 ms&gt;&#39;</span>
+<span class="s1">&#39;&lt;10, took 20.1 ms&gt;&#39;</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">request</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
-<span class="s">&#39;&lt;11, took 18.3 ms&gt;&#39;</span>
+<span class="s1">&#39;&lt;11, took 18.3 ms&gt;&#39;</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">request</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
-<span class="s">&#39;&lt;12, took 20.3 ms&gt;&#39;</span>
+<span class="s1">&#39;&lt;12, took 20.3 ms&gt;&#39;</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1788,7 +1788,7 @@ our tasks to cooperate around I/O events.</p>
             </aside>
             
             <aside class="page_number">
-              9/12
+              9/13
             </aside>
           </footer>
         </div>
@@ -1810,15 +1810,15 @@ our tasks to cooperate around I/O events.</p>
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f3</span> <span class="o">=</span> <span class="n">gevent</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f1</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-<span class="s">&#39;&lt;13, took 103.6 ms&gt;&#39;</span>
+<span class="s1">&#39;&lt;13, took 103.6 ms&gt;&#39;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f2</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-<span class="s">&#39;&lt;13, took 110.2 ms&gt;&#39;</span>
+<span class="s1">&#39;&lt;13, took 110.2 ms&gt;&#39;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f3</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-<span class="s">&#39;&lt;13, took 111.5 ms&gt;&#39;</span>
+<span class="s1">&#39;&lt;13, took 111.5 ms&gt;&#39;</span>
 </pre></div>
 </td></tr></table>
 <p>This is actual concurrent execution, reproducing our race condition :)</p></section>
@@ -1837,7 +1837,7 @@ our tasks to cooperate around I/O events.</p>
             </aside>
             
             <aside class="page_number">
-              10/12
+              10/13
             </aside>
           </footer>
         </div>
@@ -1885,7 +1885,7 @@ socket.error: [Errno 111] Connection refused
             </aside>
             
             <aside class="page_number">
-              11/12
+              11/13
             </aside>
           </footer>
         </div>
@@ -1912,10 +1912,10 @@ socket.error: [Errno 111] Connection refused
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">5001</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">5001</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">gevent</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">StreamServer</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1924,7 +1924,7 @@ socket.error: [Errno 111] Connection refused
 
     <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">peer</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="s">&#39;&lt;{0}&gt;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">))</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="s1">&#39;&lt;{0}&gt;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">))</span>
         <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></section>
@@ -1943,7 +1943,76 @@ socket.error: [Errno 111] Connection refused
             </aside>
             
             <aside class="page_number">
-              12/12
+              12/13
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: doc/concurrency.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-13">
+          <div class="inner">
+            
+            <header><h2>thredo</h2></header>
+            
+            
+            <section><p>Written by David Beazley (<a href="https://github.com/dabeaz/thredo">github.com/dabeaz/thredo</a>):</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">thredo</span>
+
+<span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Got:&#39;</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">thredo</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">thredo</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">worker</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">thredo</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="n">thredo</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="doc/concurrency.md">doc/concurrency.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/13
             </aside>
           </footer>
         </div>
@@ -2020,6 +2089,11 @@ socket.error: [Errno 111] Connection refused
         <tr id="toc-row-12" class="sub">
           <th><a href="#slide12">gevent-based server</a></th>
           <td><a href="#slide12">12</a></td>
+        </tr>
+        
+        <tr id="toc-row-13" class="sub">
+          <th><a href="#slide13">thredo</a></th>
+          <td><a href="#slide13">13</a></td>
         </tr>
         
       

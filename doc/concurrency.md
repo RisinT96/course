@@ -249,3 +249,32 @@ It's much better than the default thread behaviour.
             self.n = self.n + 1
             conn.sendall('<{0}>\n'.format(self.n))
             conn.close()
+
+
+---
+
+## thredo
+
+Written by David Beazley ([github.com/dabeaz/thredo](https://github.com/dabeaz/thredo)):
+
+    !python
+    import thredo
+
+    def worker(q):
+        while True:
+            item = q.get()
+            if item is None:
+                break
+            print('Got:', item)
+
+    def main():
+        q = thredo.Queue()
+        t = thredo.spawn(worker, q)
+        for n in range(10):
+            q.put(n)
+            thredo.sleep(1)
+        q.put(None)
+        t.join()
+
+    thredo.run(main)
+
