@@ -1424,22 +1424,22 @@ aside {
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
 
-<span class="n">VERSION</span> <span class="o">=</span> <span class="s">&#39;0.1dev&#39;</span>
+<span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;0.1dev&#39;</span>
 
 <span class="n">setup</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s">&#39;TowelStuff&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;TowelStuff&#39;</span><span class="p">,</span>
     <span class="n">version</span><span class="o">=</span><span class="n">VERSION</span><span class="p">,</span>
-    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;towelstuff&#39;</span><span class="p">],</span>
-    <span class="n">license</span><span class="o">=</span><span class="s">&#39;MIT&#39;</span><span class="p">,</span>
-    <span class="n">long_description</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;README.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span>
+    <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;towelstuff&#39;</span><span class="p">],</span>
+    <span class="n">license</span><span class="o">=</span><span class="s1">&#39;MIT&#39;</span><span class="p">,</span>
+    <span class="n">long_description</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;README.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span>
 <span class="p">)</span>
 </pre></div>
 </td></tr></table>
 <p>Prepare an source package by running:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span>python setup.py sdist
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ python setup.py sdist
 ... Lots of output ...
 </pre></div>
 </td></tr></table>
@@ -1486,19 +1486,19 @@ aside {
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">author</span> <span class="o">=</span> <span class="s">&quot;Foo Bar&quot;</span>
-<span class="n">author_email</span> <span class="o">=</span> <span class="s">&quot;foo.bar@gmail.com&quot;</span><span class="p">,</span>
-<span class="n">maintainer_email</span> <span class="o">=</span> <span class="s">&quot;foo.bar@googlegroups.com&quot;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">&quot;http://foobar.readthedocs.org&quot;</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">author</span> <span class="o">=</span> <span class="s2">&quot;Foo Bar&quot;</span>
+<span class="n">author_email</span> <span class="o">=</span> <span class="s2">&quot;foo.bar@gmail.com&quot;</span><span class="p">,</span>
+<span class="n">maintainer_email</span> <span class="o">=</span> <span class="s2">&quot;foo.bar@googlegroups.com&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://foobar.readthedocs.org&quot;</span>
 
-<span class="n">platforms</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;POSIX&quot;</span><span class="p">,</span> <span class="s">&quot;Windows&quot;</span><span class="p">]</span>
+<span class="n">platforms</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;POSIX&quot;</span><span class="p">,</span> <span class="s2">&quot;Windows&quot;</span><span class="p">]</span>
 
-<span class="n">install_requires</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;numpy&quot;</span><span class="p">,</span> <span class="s">&quot;requests&quot;</span><span class="p">]</span>
+<span class="n">install_requires</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;numpy&quot;</span><span class="p">,</span> <span class="s2">&quot;requests&quot;</span><span class="p">]</span>
 
-<span class="n">tests_require</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;nose&quot;</span><span class="p">]</span>
-<span class="n">test_suite</span> <span class="o">=</span> <span class="s">&quot;nose.collector&quot;</span>
+<span class="n">tests_require</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;nose&quot;</span><span class="p">]</span>
+<span class="n">test_suite</span> <span class="o">=</span> <span class="s2">&quot;nose.collector&quot;</span>
 
-<span class="n">entry_points</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;towel=towelstuff:main&#39;</span><span class="p">]})</span>
+<span class="n">entry_points</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;towel=towelstuff:main&#39;</span><span class="p">]})</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1544,19 +1544,19 @@ aside {
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">classifiers</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s">&quot;Development Status :: 5 - Production/Stable&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Intended Audience :: Developers&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Intended Audience :: System Administrators&quot;</span><span class="p">,</span>
-    <span class="s">&quot;License :: OSI Approved :: MIT License&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Operating System :: OS Independent&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Programming Language :: Python :: 2.7&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Programming Language :: Python :: 3.3&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Topic :: Internet&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Topic :: Software Development :: Libraries :: Python Modules&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Topic :: Software Development :: Testing&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Topic :: System :: Distributed Computing&quot;</span><span class="p">,</span>
-    <span class="s">&quot;Topic :: System :: Networking&quot;</span><span class="p">,</span>
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">classifiers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Development Status :: 5 - Production/Stable&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Intended Audience :: Developers&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Intended Audience :: System Administrators&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;License :: OSI Approved :: MIT License&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Operating System :: OS Independent&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Programming Language :: Python :: 2.7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Programming Language :: Python :: 3.3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Topic :: Internet&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Topic :: Software Development :: Libraries :: Python Modules&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Topic :: Software Development :: Testing&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Topic :: System :: Distributed Computing&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Topic :: System :: Networking&quot;</span><span class="p">,</span>
 <span class="p">],</span>
 </pre></div>
 </td></tr></table></section>
@@ -1680,14 +1680,14 @@ $ python setup.py install [--user]
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre>/tmp <span class="nv">$ </span>sudo apt-get install python-virtualenv
-/tmp <span class="nv">$ </span>virtualenv .env
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span>/tmp $ sudo apt-get install python-virtualenv
+/tmp $ virtualenv .env
 New python executable in .env/bin/python
 Installing setuptools, pip....done.
 
-/tmp <span class="nv">$ </span><span class="nb">source</span> .env/bin/activate
+/tmp $ <span class="nb">source</span> .env/bin/activate
 
-<span class="o">(</span>.env<span class="o">)</span>/tmp <span class="nv">$ </span><span class="c">### &lt;- note the prompt prefix &quot;.env&quot;</span>
+<span class="o">(</span>.env<span class="o">)</span>/tmp $ <span class="c1">### &lt;- note the prompt prefix &quot;.env&quot;</span>
 </pre></div>
 </td></tr></table></section>
             
