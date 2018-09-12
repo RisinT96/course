@@ -1,4 +1,4 @@
-# Generators 
+# Generators
 
 Generators can yield values, accept values via send and process exception via throw.
 
@@ -6,12 +6,12 @@ Generators can yield values, accept values via send and process exception via th
 	def generator():
 		yield 1
 		a = yield
-		print a
+		print(a)
 		try:
 			yield
 		except Exception as e:
-			print "caught {}".format(e)
-		
+			print("caught {}".format(e))
+
 	>>> gen.next()
 	1
 	>>> gen.next()
@@ -30,21 +30,21 @@ Generators can yield values, accept values via send and process exception via th
 
 	!python
 	>>> for i in flatten(range(3), range(3, 5)):
-	...     print i,
+	...     print(i,)
 	0 1 2 3 4
 
 ---
 
 ## Exercise 2 - find dependencies
 
-Print every imported module and how many times it is imported for all python modules in a directory (recursive!):
+Print(every imported module and how many times it is imported for all python modules in a directory (recursive!):)
 
 	!python
 	>>> print_deps("/tmp")
 	os      1
 	sys     2
     csv     1
-	
+
 Note: import can be done using `import os` and `from os import environ`.
 
 ---
@@ -70,7 +70,7 @@ The itertools module provides `ifilter` and `imap` for generator versions:
 	>>> first_prime = ifilter(is_prime, ints).next() # no need to process the whole list!
 	>>> first_prime
 	5
-	
+
 TIP: map and filter are implemented in C. they can be up to twice as fast.
 
 ---
@@ -78,7 +78,7 @@ TIP: map and filter are implemented in C. they can be up to twice as fast.
 ## Reducers
 
 Reducers take a sequence and return a single value.
-	
+
 	!python
 	>>> sum(xrange(4))
 	6
@@ -108,13 +108,13 @@ Sorting in python is always for the smallest to the biggest.
 	[3, 2, 1]
 
 	>>> l.sort() # in-place
-	>>> print l
+	>>> print(l)
 	[1, 2, 3]
 
 	>>> people = [{'name': 'foo', 'age': 20}, {'name': 'bar', 'age': 30}]
 	>>> sorted(people, key=lambda person: person['age'], reverse=True)
 	[{'name': 'bar', 'age': 30}, {'name': 'foo', 'age': 20)]
-	
+
 ---
 
 ## Secondary sort
@@ -123,9 +123,9 @@ Sorting over more than one field can be done by generating a tuple containing th
 When comparing tuples, all the first items are compared, then all the second items, etc'.
 
 	!python
-	>>> messages = [{'msg': 'foo', 'year': 2012, 'month': 5}, 
+	>>> messages = [{'msg': 'foo', 'year': 2012, 'month': 5},
 	...             {'msg': 'bar', 'year': 2011, 'month': 6},
-	...             {'msg': 'spam', 'year': 2012, 'month': 4}]  
+	...             {'msg': 'spam', 'year': 2012, 'month': 4}]
 	>>> sorted(messages, key=lambda msg: (msg['year'], msg['month']))
 	[{'msg': 'bar', 'year': 2011, 'month': 6},
      {'msg': 'spam', 'year': 2012, 'month': 4},
@@ -135,7 +135,7 @@ When comparing tuples, all the first items are compared, then all the second ite
 
 ## Exercise 3 - primes
 
-Print the first N primes. (a prime number is bigger then 1 and divides only by itself and 1).
+Print(the first N primes. (a prime number is bigger then 1 and divides only by itself and 1).)
 
 	!python
 	>>> print_first_primes(3)
@@ -148,7 +148,7 @@ Print the first N primes. (a prime number is bigger then 1 and divides only by i
 ## Exercise 4 - primes continued
 
 	!python
-	>>> print primes(100, 110)
+	>>> print(primes(100, 110))
 	547
 	557
 	563
@@ -159,4 +159,4 @@ Print the first N primes. (a prime number is bigger then 1 and divides only by i
 	593
 	599
 	601
-	
+

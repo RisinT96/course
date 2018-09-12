@@ -1332,7 +1332,7 @@ aside {
             <header><h2>Static Methods</h2></header>
             
             
-            <section><p>Static methods are basically functions enclosed in a class. </p>
+            <section><p>Static methods are basically functions enclosed in a class.</p>
 <p>They can be called directly from the class or from an instance.</p>
 <p>They have no access to the instance or class attributes because they don't get <code>self</code>.</p>
 <p>Somewhat similar to a namespace in C++.</p>
@@ -1343,11 +1343,11 @@ aside {
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">NameSpace</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NameSpace</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span> <span class="c"># no self!</span>
-        <span class="k">print</span> <span class="s">&quot;bar&quot;</span>
+    <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span> <span class="c1"># no self!</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">NameSpace</span><span class="o">.</span><span class="n">foo</span><span class="p">()</span>
 <span class="n">bar</span>
@@ -1397,17 +1397,17 @@ aside {
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">XMLElement</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">XMLElement</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
         <span class="o">...</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">XMLElement</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s">&quot;bla.xml&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">XMLElement</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;bla.xml&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table>
 <p>When a class method is called from a child class, the child class is passed as the <code>cls</code> argument.</p></section>

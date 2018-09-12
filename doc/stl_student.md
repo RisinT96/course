@@ -33,7 +33,7 @@ Bonus 2: convert the implementation to use multiprocessing.
 	...     cnt[word] += 1
 	>>> cnt
 	Counter({'blue': 3, 'red': 2, 'green': 1})
-	
+
 	>>> cnt2 = Counter(['red', 'green']) # init with a list
 	>>> cnt - cnt2
 	Counter({'blue': 3, 'red': 1})
@@ -76,7 +76,7 @@ using `maxlen` the deque can be used as a cyclic buffer:
 	...
 	>>> d.items()
 	[('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
-	
+
 ---
 
 ### `namedtuple`
@@ -86,8 +86,8 @@ a `namedtuple` can be used anywhere a `tuple` is used (it inherits from `tuple`)
 	!python
 	>>> from collections import namedtuple
 	>>> Point = namedtuple("Point", "x y") # generates a class
-	>>> p = Point(10, 20) 
-	>>> print p # automatic __repr__
+	>>> p = Point(10, 20)
+	>>> print(p) # automatic __repr__
 	Point(x=10, y=20)
 	>>> x, y = p
 	>>> p.x = 100 # immutable
@@ -130,7 +130,7 @@ Bonus: add an `int` argument called `most_common` for returning only the most co
 
 ---
 
-## Exercise 4 - subprocess 
+## Exercise 4 - subprocess
 
 Implement a grep function using `subprocess.Popen` and the unix `grep`:
 
@@ -167,7 +167,7 @@ Bonus: implement the grep process as a python script.
 ## StringIO
 
 The `StringIO` module has two use cases:
-	
+
 ### Mimic a `file` object
 
 The `StringIO.StringIO` object implements the file object interface and behaves as an in-memory file.
@@ -182,7 +182,7 @@ This is also great for unittest:
 	!python
 	def test_grep():
 		assert ["foo", "foobar"] == grep("foo", StringIO("foo\nbar\nfoobar"))
-	
+
 
 Note: the `cStringIO` module is a (faster) C implementation of StringIO.
 
@@ -249,9 +249,9 @@ If your object is not pickleable, or you want to pickle it in a custom way you c
 	>>> db['b']
 	[1, 2, 3]
 	>>> db.close()
-	
+
 Hint: `obj[key]` translates to `obj.__getitem__(key)`, `obj[key] = value` translates to `obj.__setitem__(key, value)`.
-	
+
 ---
 
 * `itertools` - generators versions to existing functions and more: izip, islice, imap, ifilter, cycle, repeat, chain, groupby.
@@ -267,7 +267,7 @@ Hint: `obj[key]` translates to `obj.__getitem__(key)`, `obj[key] = value` transl
 ### lxml - building
 
 	!python
-	>>> from lxml.builder import E	
+	>>> from lxml.builder import E
 	>>> page = (
 	...   E.html(       # create an Element called "html"
 	...     E.head(
@@ -308,8 +308,8 @@ Hint: `obj[key]` translates to `obj.__getitem__(key)`, `obj[key] = value` transl
 	...     element.clear()
 	ABC -- abc
 	MORE DATA -- more data
-	XYZ -- xyz	
-	
+	XYZ -- xyz
+
 ---
 
 ## Exercise 7 - xor a buffer
@@ -319,8 +319,8 @@ What would be the fastest way to xor a buffer with 0x7b?
 	!python
 	>>> xor_buf('\x01\x02\x03', 0x7b)
 	'zyx'
-	
----	
+
+---
 
 ## `numpy`
 
@@ -358,7 +358,7 @@ Some client code for example.
 	'BAR'
 
 Simple server code:
-	
+
 	!python
 	>>> import socket
 	>>> server = socket.socket()

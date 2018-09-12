@@ -64,7 +64,7 @@ a `namedtuple` can be used anywhere a `tuple` is used (it inherits from `tuple`)
 	>>> from collections import namedtuple
 	>>> Point = namedtuple("Point", "x y") # generates a class
 	>>> p = Point(10, 20)
-	>>> print p # automatic __repr__
+	>>> print(p) # automatic __repr__
 	Point(x=10, y=20)
 	>>> x, y = p
 	>>> p.x = 100 # immutable
@@ -100,7 +100,7 @@ TIP: The `namedtuple` takes less memory than regular objects because it doesn't 
 
 	def print_cap_words(s):
 		for char, words in find_cap_words(s).iteritems():
-			print char, ':', ', '.join(words)
+			print(char, ':', ', '.join(words))
 
 ---
 
@@ -215,13 +215,13 @@ main.py:
 		a_set = set(a)
 		b_set = set(b)
 		join_set = ''.join
-		print "chars in {} and not in {}: {}".format(a, b, join_set(a_set - b_set))
-		print "chars in {} and not in {}: {}".format(b, a, join_set(b_set - a_set))
-		print "chars in one and not the other:", join_set(a_set ^ b_set)
-		print "chars in both strings: ", join_set(a_set & b_set)
-		print "all chars: ", join_set(a_set | b_set)
-		print "{} contained in {}: {}".format(a, b, a_set <= b_set)
-		print "{} contained in {}: {}".format(b, a, b_set <= a_set)
+		print("chars in {} and not in {}: {}".format(a, b, join_set(a_set - b_set)))
+		print("chars in {} and not in {}: {}".format(b, a, join_set(b_set - a_set)))
+		print("chars in one and not the other:", join_set(a_set ^ b_set))
+		print("chars in both strings: ", join_set(a_set & b_set))
+		print("all chars: ", join_set(a_set | b_set))
+		print("{} contained in {}: {}".format(a, b, a_set <= b_set))
+		print("{} contained in {}: {}".format(b, a, b_set <= a_set))
 
 ---
 

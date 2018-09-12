@@ -1326,22 +1326,22 @@ aside {
 15
 16
 17
-18</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># do this</span>
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># do this</span>
 <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
-    <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span> <span class="c"># even though an exception is raised the lock is released</span>
+    <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span> <span class="c1"># even though an exception is raised the lock is released</span>
 
-<span class="c"># don&#39;t do this - you might forget to call release</span>
+<span class="c1"># don&#39;t do this - you might forget to call release</span>
 <span class="n">lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="o">...</span>
 <span class="k">finally</span><span class="p">:</span>
     <span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
-<span class="k">with</span> <span class="nb">file</span><span class="p">(</span><span class="s">&#39;/tmp/bla&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;data&#39;</span><span class="p">)</span>
-    <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span> <span class="c"># even though an exception is raised the file is closed</span>
+<span class="k">with</span> <span class="nb">file</span><span class="p">(</span><span class="s1">&#39;/tmp/bla&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+    <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span> <span class="c1"># even though an exception is raised the file is closed</span>
 
-<span class="c"># nesting</span>
+<span class="c1"># nesting</span>
 <span class="k">with</span> <span class="n">lock1</span><span class="p">,</span> <span class="n">lock2</span><span class="p">:</span>
     <span class="o">...</span>
 </pre></div>
@@ -1397,9 +1397,9 @@ aside {
 19
 20
 21
-22</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">LockContext</span><span class="p">()</span> <span class="k">as</span> <span class="n">lock</span><span class="p">:</span>
-<span class="o">...</span>     <span class="k">print</span> <span class="n">lock</span><span class="o">.</span><span class="n">is_locked</span><span class="p">()</span>
-<span class="o">...</span> <span class="k">print</span> <span class="n">lock</span><span class="o">.</span><span class="n">is_locked</span><span class="p">()</span>
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">LockContext</span><span class="p">()</span> <span class="k">as</span> <span class="n">lock</span><span class="p">:</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">lock</span><span class="o">.</span><span class="n">is_locked</span><span class="p">())</span>
+<span class="o">...</span> <span class="k">print</span><span class="p">(</span><span class="n">lock</span><span class="o">.</span><span class="n">is_locked</span><span class="p">())</span>
 <span class="n">init</span>
 <span class="n">locking</span><span class="o">..</span>
 <span class="bp">True</span>
@@ -1407,17 +1407,17 @@ aside {
 <span class="bp">False</span>
 
 <span class="k">class</span> <span class="nc">LockContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;init&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">is_locked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">locked</span><span class="p">()</span>
-    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;locking..&quot;</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;locking..&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span>
-    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;unlocking..&quot;</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;unlocking..&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></section>
@@ -1450,7 +1450,7 @@ aside {
             <header><h2>The context manager protocol</h2></header>
             
             
-            <section><p>A Context manager can swallow exceptions (prevent propagation) by returning <code>True</code> in its <code>__exit__</code> method. </p>
+            <section><p>A Context manager can swallow exceptions (prevent propagation) by returning <code>True</code> in its <code>__exit__</code> method.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1463,19 +1463,19 @@ aside {
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">NoExceptions</span><span class="p">():</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">NoExceptions</span><span class="p">():</span>
 <span class="o">...</span>     <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
 <span class="n">Ha</span> <span class="n">Ha</span>
 <span class="o">&gt;&gt;&gt;</span>
 
 <span class="k">class</span> <span class="nc">NoExceptions</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Ha Ha&quot;</span>
-        <span class="k">return</span> <span class="bp">True</span> <span class="c"># indicates exception has been handled and shouldn&#39;t propagate</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Ha Ha&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">True</span> <span class="c1"># indicates exception has been handled and shouldn&#39;t propagate</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1522,7 +1522,7 @@ aside {
  9
 10
 11
-12</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
 <span class="nd">@contextmanager</span>
 <span class="k">def</span> <span class="nf">locked</span><span class="p">(</span><span class="n">lock</span><span class="p">):</span>
     <span class="n">lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
@@ -1568,7 +1568,7 @@ aside {
             <section><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">NoExceptions</span><span class="p">([</span><span class="ne">ZeroDivisionError</span><span class="p">]):</span>
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">NoExceptions</span><span class="p">([</span><span class="ne">ZeroDivisionError</span><span class="p">]):</span>
 <span class="o">...</span>     <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
 <span class="n">ignoring</span> <span class="n">exception</span><span class="p">:</span> <span class="n">integer</span> <span class="n">division</span> <span class="ow">or</span> <span class="n">modulo</span> <span class="n">by</span> <span class="n">zero</span>
 <span class="o">&gt;&gt;&gt;</span>
@@ -1611,10 +1611,10 @@ aside {
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">benchmark</span><span class="p">():</span>
-    <span class="k">with</span> <span class="n">Timed</span><span class="p">(</span><span class="s">&quot;list comprehension&quot;</span><span class="p">):</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">benchmark</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">Timed</span><span class="p">(</span><span class="s2">&quot;list comprehension&quot;</span><span class="p">):</span>
         <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)]</span>
-    <span class="k">with</span> <span class="n">Timed</span><span class="p">(</span><span class="s">&quot;map&quot;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">Timed</span><span class="p">(</span><span class="s2">&quot;map&quot;</span><span class="p">):</span>
         <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">))</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">benchmark</span><span class="p">()</span>

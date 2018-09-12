@@ -1323,14 +1323,14 @@ aside {
 16
 17
 18
-19</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">generator</span><span class="p">():</span>
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generator</span><span class="p">():</span>
     <span class="k">yield</span> <span class="mi">1</span>
     <span class="n">a</span> <span class="o">=</span> <span class="k">yield</span>
-    <span class="k">print</span> <span class="n">a</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">yield</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">print</span> <span class="s">&quot;caught {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;caught {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">gen</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 <span class="mi">1</span>
@@ -1340,7 +1340,7 @@ aside {
 <span class="o">&gt;&gt;&gt;</span> <span class="n">gen</span><span class="o">.</span><span class="n">throw</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">caught</span> <span class="mi">3</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">StopIteration</span>
 </pre></div>
 </td></tr></table></section>
@@ -1375,8 +1375,8 @@ aside {
             
             <section><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">flatten</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)):</span>
-<span class="o">...</span>     <span class="k">print</span> <span class="n">i</span><span class="p">,</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">flatten</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)):</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,)</span>
 <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
 </pre></div>
 </td></tr></table></section>
@@ -1409,11 +1409,11 @@ aside {
             <header><h2>Exercise 2 - find dependencies</h2></header>
             
             
-            <section><p>Print every imported module and how many times it is imported for all python modules in a directory (recursive!):</p>
+            <section><p>Print(every imported module and how many times it is imported for all python modules in a directory (recursive!):)</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">print_deps</span><span class="p">(</span><span class="s">&quot;/tmp&quot;</span><span class="p">)</span>
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_deps</span><span class="p">(</span><span class="s2">&quot;/tmp&quot;</span><span class="p">)</span>
 <span class="n">os</span>      <span class="mi">1</span>
 <span class="n">sys</span>     <span class="mi">2</span>
 <span class="n">csv</span>     <span class="mi">1</span>
@@ -1455,11 +1455,11 @@ aside {
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">ints</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">filter</span><span class="p">(</span><span class="n">is_prime</span><span class="p">,</span> <span class="n">ints</span><span class="p">)</span> <span class="c"># [i for i in ints if is_prime(i)]</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">ints</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">filter</span><span class="p">(</span><span class="n">is_prime</span><span class="p">,</span> <span class="n">ints</span><span class="p">)</span> <span class="c1"># [i for i in ints if is_prime(i)]</span>
 <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">ints</span><span class="p">)</span> <span class="c"># [str(i) for i in ints]</span>
-<span class="p">[</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="s">&#39;3&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">ints</span><span class="p">)</span> <span class="c1"># [str(i) for i in ints]</span>
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>
 </pre></div>
 </td></tr></table>
 <p>The itertools module provides <code>ifilter</code> and <code>imap</code> for generator versions:</p>
@@ -1467,9 +1467,9 @@ aside {
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">ints</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">ints</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">ifilter</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">first_prime</span> <span class="o">=</span> <span class="n">ifilter</span><span class="p">(</span><span class="n">is_prime</span><span class="p">,</span> <span class="n">ints</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="c"># no need to process the whole list!</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">first_prime</span> <span class="o">=</span> <span class="n">ifilter</span><span class="p">(</span><span class="n">is_prime</span><span class="p">,</span> <span class="n">ints</span><span class="p">)</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="c1"># no need to process the whole list!</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">first_prime</span>
 <span class="mi">5</span>
 </pre></div>
@@ -1517,7 +1517,7 @@ aside {
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">xrange</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">xrange</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 <span class="mi">6</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="p">[])</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
@@ -1527,9 +1527,9 @@ aside {
 <span class="bp">True</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">max</span><span class="p">(</span><span class="nb">xrange</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 <span class="mi">3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">people</span> <span class="o">=</span> <span class="p">[{</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="s">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span> <span class="p">{</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="s">&#39;age&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">person</span><span class="p">:</span> <span class="n">person</span><span class="p">[</span><span class="s">&#39;age&#39;</span><span class="p">])</span>
-<span class="p">{</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="s">&#39;age&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">people</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">person</span><span class="p">:</span> <span class="n">person</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">])</span>
+<span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1574,19 +1574,19 @@ aside {
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="c"># generate a new sorted list</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="c1"># generate a new sorted list</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="c"># original list untouched</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="c1"># original list untouched</span>
 <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c"># in-place</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">l</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c1"># in-place</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">people</span> <span class="o">=</span> <span class="p">[{</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="s">&#39;age&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span> <span class="p">{</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="s">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">person</span><span class="p">:</span> <span class="n">person</span><span class="p">[</span><span class="s">&#39;age&#39;</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="p">[{</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="s">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span> <span class="p">{</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="s">&#39;age&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">people</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">person</span><span class="p">:</span> <span class="n">person</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">)]</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1626,13 +1626,13 @@ When comparing tuples, all the first items are compared, then all the second ite
 4
 5
 6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s">&#39;msg&#39;</span><span class="p">:</span> <span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="s">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2012</span><span class="p">,</span> <span class="s">&#39;month&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> 
-<span class="o">...</span>             <span class="p">{</span><span class="s">&#39;msg&#39;</span><span class="p">:</span> <span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="s">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2011</span><span class="p">,</span> <span class="s">&#39;month&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">},</span>
-<span class="o">...</span>             <span class="p">{</span><span class="s">&#39;msg&#39;</span><span class="p">:</span> <span class="s">&#39;spam&#39;</span><span class="p">,</span> <span class="s">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2012</span><span class="p">,</span> <span class="s">&#39;month&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]</span>  
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">msg</span><span class="p">:</span> <span class="p">(</span><span class="n">msg</span><span class="p">[</span><span class="s">&#39;year&#39;</span><span class="p">],</span> <span class="n">msg</span><span class="p">[</span><span class="s">&#39;month&#39;</span><span class="p">]))</span>
-<span class="p">[{</span><span class="s">&#39;msg&#39;</span><span class="p">:</span> <span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="s">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2011</span><span class="p">,</span> <span class="s">&#39;month&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">},</span>
- <span class="p">{</span><span class="s">&#39;msg&#39;</span><span class="p">:</span> <span class="s">&#39;spam&#39;</span><span class="p">,</span> <span class="s">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2012</span><span class="p">,</span> <span class="s">&#39;month&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
- <span class="p">{</span><span class="s">&#39;msg&#39;</span><span class="p">:</span> <span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="s">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2012</span><span class="p">,</span> <span class="s">&#39;month&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}]</span>
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2012</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+<span class="o">...</span>             <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2011</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">},</span>
+<span class="o">...</span>             <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;spam&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2012</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">msg</span><span class="p">:</span> <span class="p">(</span><span class="n">msg</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;month&#39;</span><span class="p">]))</span>
+<span class="p">[{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2011</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;spam&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2012</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="mi">2012</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}]</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1664,11 +1664,11 @@ When comparing tuples, all the first items are compared, then all the second ite
             <header><h2>Exercise 3 - primes</h2></header>
             
             
-            <section><p>Print the first N primes. (a prime number is bigger then 1 and divides only by itself and 1).</p>
+            <section><p>Print(the first N primes. (a prime number is bigger then 1 and divides only by itself and 1).)</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">print_first_primes</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_first_primes</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="mi">2</span>
 <span class="mi">3</span>
 <span class="mi">5</span>
@@ -1713,7 +1713,7 @@ When comparing tuples, all the first items are compared, then all the second ite
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">primes</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">110</span><span class="p">)</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">primes</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">110</span><span class="p">))</span>
 <span class="mi">547</span>
 <span class="mi">557</span>
 <span class="mi">563</span>

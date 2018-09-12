@@ -1319,16 +1319,16 @@ aside {
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;BYE&quot;</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;BYE&quot;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span> <span class="c"># ref count = 1</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;a&#39;</span><span class="p">:</span> <span class="n">a</span><span class="p">}</span> <span class="c"># ref count = 2</span>
-    <span class="k">del</span> <span class="n">a</span> <span class="c"># ref count = 1, nothing printed!</span>
-    <span class="k">print</span> <span class="s">&quot;ready?&quot;</span>
-    <span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">]</span> <span class="c"># ref count = 0</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span> <span class="c1"># ref count = 1</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">a</span><span class="p">}</span> <span class="c1"># ref count = 2</span>
+    <span class="k">del</span> <span class="n">a</span> <span class="c1"># ref count = 1, nothing printed!</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ready?&quot;</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="c1"># ref count = 0</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="p">()</span>
 <span class="n">ready</span><span class="err">?</span>
 <span class="n">BYE</span>
@@ -1372,13 +1372,13 @@ aside {
 4
 5
 6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">gc</span>
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">gc</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
 <span class="o">...</span>     <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="o">...</span>     <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;list&#39;</span><span class="p">:</span> <span class="n">l</span><span class="p">}</span>
-<span class="o">...</span>     <span class="k">print</span> <span class="n">gc</span><span class="o">.</span><span class="n">get_referrers</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;list&#39;</span><span class="p">:</span> <span class="n">l</span><span class="p">}</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">get_referrers</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="p">()</span>
-<span class="p">[</span><span class="o">&lt;</span><span class="n">frame</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fc4bbc764f0</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;list&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}]</span>
+<span class="p">[</span><span class="o">&lt;</span><span class="n">frame</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fc4bbc764f0</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;list&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}]</span>
 </pre></div>
 </td></tr></table>
 </li>
@@ -1421,13 +1421,13 @@ aside {
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="o">...</span>     <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="o">...</span>     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="o">...</span>         <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
-<span class="o">...</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">A</span><span class="p">()</span>
-<span class="ne">Exception</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="s">&#39;integer division or modulo by zero&#39;</span> <span class="ow">in</span> 
-<span class="o">&lt;</span><span class="n">bound</span> <span class="n">method</span> <span class="n">A</span><span class="o">.</span><span class="n">__del__</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">A</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10e9167d0</span><span class="o">&gt;&gt;</span> <span class="n">ignored</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">())</span>
+<span class="ne">Exception</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="s1">&#39;integer division or modulo by zero&#39;</span> <span class="ow">in</span>
+<span class="o">&lt;</span><span class="n">bound</span> <span class="n">method</span> <span class="n">A</span><span class="o">.</span><span class="fm">__del__</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">A</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10e9167d0</span><span class="o">&gt;&gt;</span> <span class="n">ignored</span>
 <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">A</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10e9167d0</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span>
 </pre></div>
@@ -1475,9 +1475,9 @@ aside {
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>    
-    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">release</span><span class="p">()</span> <span class="c"># who goes first? a or b?</span>
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">release</span><span class="p">()</span> <span class="c1"># who goes first? a or b?</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
@@ -1487,7 +1487,7 @@ aside {
 <span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">b</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">gc</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">gc</span><span class="o">.</span><span class="n">garbage</span> <span class="c"># the gc marks object it can&#39;t free</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">gc</span><span class="o">.</span><span class="n">garbage</span> <span class="c1"># the gc marks object it can&#39;t free</span>
 <span class="p">[</span><span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">A</span> <span class="n">at</span> <span class="mh">0x101e27510</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">A</span> <span class="n">at</span> <span class="mh">0x101e27f50</span><span class="o">&gt;</span><span class="p">]</span>
 </pre></div>
 </td></tr></table>
@@ -1531,17 +1531,17 @@ aside {
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">print_mem_stats</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="mi">983</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;wrapper_descriptor&#39;</span><span class="o">&gt;</span>
-<span class="mi">589</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;function&#39;</span><span class="o">&gt;</span>
-<span class="mi">550</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;builtin_function_or_method&#39;</span><span class="o">&gt;</span>
-<span class="mi">341</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;method_descriptor&#39;</span><span class="o">&gt;</span>
-<span class="mi">322</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;dict&#39;</span><span class="o">&gt;</span>
-<span class="mi">243</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;weakref&#39;</span><span class="o">&gt;</span>
-<span class="mi">239</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;tuple&#39;</span><span class="o">&gt;</span>
-<span class="mi">176</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;member_descriptor&#39;</span><span class="o">&gt;</span>
-<span class="mi">123</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;list&#39;</span><span class="o">&gt;</span>
-<span class="mi">108</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s">&#39;set&#39;</span><span class="o">&gt;</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_mem_stats</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="mi">983</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;wrapper_descriptor&#39;</span><span class="o">&gt;</span>
+<span class="mi">589</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;function&#39;</span><span class="o">&gt;</span>
+<span class="mi">550</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;builtin_function_or_method&#39;</span><span class="o">&gt;</span>
+<span class="mi">341</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;method_descriptor&#39;</span><span class="o">&gt;</span>
+<span class="mi">322</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;dict&#39;</span><span class="o">&gt;</span>
+<span class="mi">243</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;weakref&#39;</span><span class="o">&gt;</span>
+<span class="mi">239</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;tuple&#39;</span><span class="o">&gt;</span>
+<span class="mi">176</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;member_descriptor&#39;</span><span class="o">&gt;</span>
+<span class="mi">123</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;list&#39;</span><span class="o">&gt;</span>
+<span class="mi">108</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;set&#39;</span><span class="o">&gt;</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1583,7 +1583,7 @@ aside {
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">gc</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gc</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 
 <span class="k">def</span> <span class="nf">get_obj_counts</span><span class="p">():</span>
@@ -1592,8 +1592,8 @@ aside {
     <span class="k">return</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">print_mem_stats</span><span class="p">(</span><span class="n">top</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">cls</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">get_obj_counts</span><span class="p">()</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="n">top</span><span class="p">):</span>
-        <span class="k">print</span> <span class="n">count</span><span class="p">,</span> <span class="n">cls</span>
+    <span class="k">for</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">get_obj_counts</span><span class="p">()</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="n">top</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></section>
             

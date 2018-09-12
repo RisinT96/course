@@ -8,9 +8,9 @@ Variables, which are names pointing to values are stored in a dict:
 
 	!python
 	>>> a = 10
-	>>> print a
+	>>> print(a)
 	10
-	>>> print locals()['a']
+	>>> print(locals()['a'])
 	10
 
 Static variables and methods are also stored in a dict:
@@ -19,9 +19,9 @@ Static variables and methods are also stored in a dict:
 	>>> class Foo(object):
 	...     def bar(self):
 	...         pass
-	>>> print Foo.bar
+	>>> print(Foo.bar)
 	<unbound method Foo.bar>
-	>>> print Foo.__dict__['bar']
+	>>> print(Foo.__dict__['bar'])
 	<unbound method Foo.bar>
 
 ---
@@ -113,7 +113,7 @@ The `__getattr__` method is called for non-existent members.
     !python
     class Foo(object):
         def __getattr__(self, name):
-            print 'getting {}'.format(name)
+            print('getting {}'.format(name))
             return len(name)
 
     >>> f = Foo()
@@ -136,7 +136,7 @@ The `__getattribute__` method is called for any members.
     !python
     class Foo(object):
         def __getattribute__(self, name):
-            print 'getting {}'.format(name)
+            print('getting {}'.format(name))
             return len(name)
 
     >>> f = Foo()
@@ -160,7 +160,7 @@ The `__setattr__` method is called when setting all members.
     !python
     class Foo(object):
         def __setattr__(self, name, value):
-            print 'setting {} = {}'.format(name, value)
+            print('setting {} = {}'.format(name, value))
 
     >>> f = Foo()
     >>> f.x = 1
@@ -250,7 +250,7 @@ it's useful for calculated values and readonly attributes.
 		def __init__(self, value):
 			self._value = value
 		def __get__(self, obj, type):
-			print obj, type
+			print(obj, type)
 			return self._value
 		def __set__(self, obj, value):
 			raise AttributeError() # indicates a read only
@@ -343,22 +343,22 @@ And using super:
 	!python
 	class Person(object):
 		def __init__(self):
-			print "Person"
+			print("Person")
 
 	class Student(Person):
 		def __init__(self):
 			super(Student, self).__init__()
-			print "Student"
+			print("Student")
 
 	class Teacher(Person):
 		def __init__(self):
 			super(Teacher, self).__init__()
-			print "Teacher"
+			print("Teacher")
 
 	class TeachingStudent(Student, Teacher):
 		def __init__(self):
 			super(TeachingStudent, self).__init__()
-			print "TeachingStudent"
+			print("TeachingStudent")
 
 ---
 

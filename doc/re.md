@@ -9,10 +9,10 @@ Inspired by 'learn regex the hard way' by Zed Shaw
 	!python
 	>>> s = "Do not take life Too seriously."
 	>>> from re import search
-	>>> print search(r"Don't", s)
+	>>> print(search(r"Don't", s))
 	None
 	>>> m = search(r"Do not", s)
-    >>> print m
+    >>> print(m)
 	<_sre.SRE_Match at 0x10cbc73d8>
 	>>> m.start()
 	0
@@ -30,9 +30,9 @@ The dot ('.') matches any character except new line.
 	!python
 	>>> s = "Do not take life Too seriously."
 	>>> from re import search
-	>>> print search(r"l.f.", s)
+	>>> print(search(r"l.f.", s))
 	<_sre.SRE_Match at 0x10cbc73d8>
-	>>> print search(r". . .", s) # no adjacent three single letter words
+	>>> print(search(r". . .", s)) # no adjacent three single letter words
 	None
 
 In order for '.' to match '\n' (new line) we need to pass a flag:
@@ -208,9 +208,9 @@ The parenthesis are used to mark subgroups:
 	>>> match = _
 	>>> match.groups()
 	('10',)
-	>>> print match.group(0) # the first group is the whole string
+	>>> print(match.group(0)) # the first group is the whole string
 	chapter 10
-	>>> print match.group(1)
+	>>> print(match.group(1))
 	10
 
 Note: parenthesis are used both for logical 'or' and for capturing. Luckily there's a non capturing version of parenthesis. an example usage for using `or` without capturing: `(?:a|b)`.
@@ -254,7 +254,7 @@ There's also a generator version that yields match objects:
 	!python
 	>>> from re import finditer
 	>>> for match in finditer("\d+", "123 456 789"):
-	...     print match.group(0)
+	...     print(match.group(0))
 	123
 	456
 	789
@@ -269,13 +269,13 @@ The `sub` function gets a `repl` (replace) argument that can be a string that re
 
 	!python
 	>>> from re import sub
-	>>> print sub(pattern='foo', repl='bar', string='foobar')
+	>>> print(sub(pattern='foo', repl='bar', string='foobar'))
 	barbar
 
 The string can refer to subgroups using `\g<n>` where `n` is the subgroup:
 
 	!python
-	>>> print sub(pattern='[0-9a-fA-F]', repl=r'0x\g<0>', string='8a')
+	>>> print(sub(pattern='[0-9a-fA-F]', repl=r'0x\g<0>', string='8a'))
 	0x8a
 
 `repl` can also be a function that gets a match and returns a string:
@@ -283,7 +283,7 @@ The string can refer to subgroups using `\g<n>` where `n` is the subgroup:
 	!python
 	>>> def inc(match):
 	...     return str(int(match.group(0)) + 1)
-	>>> print sub(pattern='\d+', repl=inc, string='123 456')
+	>>> print(sub(pattern='\d+', repl=inc, string='123 456'))
 	124 457
 
 ---
@@ -304,17 +304,17 @@ Each time a pattern is passed as an argument to `search` or `findall` it is comp
 `get_domain` verifies an email address and returns the domain part of it.
 
 	!python
-	>>> print get_domain("bill")
+	>>> print(get_domain("bill"))
 	Traceback (most recent call last):
 	  File "<stdin>", line 1, in <module>
     ValueError: Invalid email
 
-	>>> print get_domain("bill@domain") # must have a '.'!
+	>>> print(get_domain("bill@domain")) # must have a '.'!
 	Traceback (most recent call last):
 	  File "<stdin>", line 1, in <module>
     ValueError: Invalid email
 
-	>>> print get_domain("bill@domain.com")
+	>>> print(get_domain("bill@domain.com"))
 	domain.com
 
 ---
@@ -324,7 +324,7 @@ Each time a pattern is passed as an argument to `search` or `findall` it is comp
 `replace_with_bob` replaces all words that start with a 'k' with 'bob'.
 
 	!python
-	>>> print replace_with_bob("A knight with a knife")
+	>>> print(replace_with_bob("A knight with a knife"))
 	A bob with a bob
 
 ---
@@ -334,9 +334,9 @@ Each time a pattern is passed as an argument to `search` or `findall` it is comp
 `capitalize` replaces all sentences
 
 	!python
-	>>> print capitalize("""sentences are seperated by dots.
+	>>> print(capitalize("""sentences are seperated by dots.
 	                        don't forget the first sentence.
-							the last sentence might not end with a dot.")
+							the last sentence might not end with a dot."))
 	Sentences are seperated by dots.
 	Don't forget the first sentence.
 	The last sentence might not end with a dot.

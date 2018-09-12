@@ -19,12 +19,11 @@ Implementation example:
 
 	!python
 	def f(*args): # you can call it in a different name if you want, the * is a must
-		print type(args), args
-	    print 
+		print(type(args), args)
 
 	>>> f(1, 2, 3)
 	tuple (1, 2, 3)
-	
+
 ---
 
 The reverse operation - pass a sequence as the arguments:
@@ -44,14 +43,14 @@ When unpacking in a non variadic function call, make sure the number of args mat
 	!python
 	def add(x, y):
 		return x + y
-		
+
 	>>> add(*[1, 2, 3])
 	Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     TypeError: add() takes exactly 2 arguments (3 given)
-	
+
 ---
-	
+
 ## kwargs (\*\*)
 
 * Keyword arguments allow passing values by argument name: `foo(a=10)`
@@ -63,16 +62,16 @@ Examples:
 
 	!python
 	def foo(**kwargs):
-		print kwargs
-		
+		print(kwargs)
+
 	>>> foo(a=1, b=2)
 	{'a': 1, 'b': 2}
-	
+
 	>>> foo(**{'a': 1, 'b': 2})
     {'a': 1, 'b': 2}
-	
+
 	def foo(a, b=None):
-		print a, b
-		
+		print(a, b)
+
     >> foo(**{'a': 1, 'b': 2})
 	1 2

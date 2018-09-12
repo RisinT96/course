@@ -82,7 +82,7 @@ A recipe to launch ipython by calling a function:
 	def foo():
 		a = 10
 		ishell()
-		print 20
+		print(20)
 
 	if __name__ == '__main__':
 		foo()
@@ -91,7 +91,7 @@ Run the script:
 
 	!bash
 	# python script.py
-	In [1]: print a
+	In [1]: print(a)
 	10
 	In [2]:
 	Do you really want to exit ([y]/n)? y

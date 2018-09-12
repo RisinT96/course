@@ -55,7 +55,7 @@ A decorator that prints each time the function is called.
 
 	def debug(func):
 		def decorated(*a, **k):
-			print "calling", func.__name__
+			print("calling", func.__name__)
 			return func(*a, **k)
 		return decorated
 
@@ -101,14 +101,14 @@ Can you implement it using the information you see here?
 	!python
 	def debug(func):
 		def new_func(*a, **k):
-			print "{} got ".format(func.__name__), a, k
+			print("{} got ".format(func.__name__), a, k)
 			try:
 				ret = func(*a, **k)
 			except Exception as e:
-				print "raised: {}".format(e)
+				print("raised: {}".format(e))
 				raise
 			else:
-				print "returned: {}".format(ret)
+				print("returned: {}".format(ret))
 				return ret
 		return new_func
 
@@ -188,7 +188,7 @@ Adding some type safety
 			def decorated(*args):
 				n_args = len(args)
 				n_types = len(types)
-				if n_args != n_types:				
+				if n_args != n_types:
 					fmt = "invalid num of args. expected {}, got {}"
 					raise ValueError(fmt.format(n_types, n_args)))
 
@@ -256,7 +256,7 @@ Without `functools.wraps`:
 
 	def debug(func):
 		def decorated(*a, **k):
-			print "calling", func.__name__
+			print("calling", func.__name__)
 			return func(*a, **k)
 		return decorated
 
@@ -282,7 +282,7 @@ With `functools.wraps`:
 	def debug(func):
 		@wraps(func)
 		def decorated(*a, **k):
-			print "calling", func.__name__
+			print("calling", func.__name__)
 			return func(*a, **k)
 		return decorated
 
@@ -311,15 +311,15 @@ This method can be used to save cpu time in exchange for memory.
 
 	@cached
 	def calc(x, y):
-		print "performing a long computation..."
+		print("performing a long computation...")
 		return x + y
 
-	>>> print calc(10, 20)
+	>>> print(calc(10, 20))
 	performing a long computation...
 	30
-	>>> print calc(10, 20) # cache hit!
+	>>> print(calc(10, 20)) # cache hit!
 	30
-	>>> print calc(10, 50)
+	>>> print(calc(10, 50))
 	performing a long computation...
 	60
 

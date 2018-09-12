@@ -4,20 +4,20 @@
 
 ## Static Methods
 
-Static methods are basically functions enclosed in a class. 
+Static methods are basically functions enclosed in a class.
 
 They can be called directly from the class or from an instance.
 
 They have no access to the instance or class attributes because they don't get `self`.
 
 Somewhat similar to a namespace in C++.
-	
+
 	!python
 	class NameSpace(object):
 
 	    @staticmethod
 		def foo(): # no self!
-			print "bar"
+			print("bar")
 
 	>>> NameSpace.foo()
 	bar
@@ -41,12 +41,12 @@ Example:
 
 	    def __init__(self, string):
 			...
-			
+
 		@classmethod
 		def from_file(cls, path):
 			with open(path) as f:
 				return cls(f.read())
-			
+
 	>>> element = XMLElement.from_file("bla.xml")
 
 When a class method is called from a child class, the child class is passed as the `cls` argument.

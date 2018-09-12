@@ -25,7 +25,7 @@ It's part of CPython from 2.5 version.
     !python
     >>> import ctypes as c
     >>> d = c.CDLL("libc.so.6")  # /lib/x86_64-linux-gnu/libc.so.6
-    >>> print d.printf("Hello Linux World\n")
+    >>> print(d.printf("Hello Linux World\n"))
     Hello Linux World
     18
 
@@ -35,7 +35,7 @@ It's part of CPython from 2.5 version.
     !python
     >>> import ctypes as c
     >>> d = c.CDLL('msvcrt')
-    >>> print d.printf("Hello Windows World\n")
+    >>> print(d.printf("Hello Windows World\n"))
     Hello Windows World
     20
 
@@ -182,7 +182,7 @@ An example:
     >>> strchr.restype = c_char_p # c_char_p is a pointer to a string
     >>> strchr("abcdef", ord("d"))
     'def'
-    >>> print strchr("abcdef", ord("x"))
+    >>> print(strchr("abcdef", ord("x")))
     None
     >>>
 
@@ -194,12 +194,12 @@ An example:
     >>> i = c_int()
     >>> f = c_float()
     >>> s = create_string_buffer('\x00' * 32)
-    >>> print i.value, f.value, repr(s.value)
+    >>> print(i.value, f.value, repr(s.value))
     0 0.0 ''
     >>> libc.sscanf("1 3.14 Hello", "%d %f %s",
     ...             byref(i), byref(f), s)
     3
-    >>> print i.value, f.value, repr(s.value)
+    >>> print(i.value, f.value, repr(s.value))
     1 3.1400001049 'Hello'
     >>>
 
@@ -218,7 +218,7 @@ An example:
       File "<stdin>", line 1, in ?
     ArgumentError: argument 2: exceptions.TypeError: \
             one character string expected
-    >>> print strchr("abcdef", "x")
+    >>> print(strchr("abcdef", "x"))
     None
     >>> strchr("abcdef", "d")
     'def'
