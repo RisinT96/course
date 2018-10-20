@@ -51,7 +51,7 @@ The bare minimum:
     setup(
         name='TowelStuff',
         version=VERSION,
-        packages=['towelstuff'],
+        packages=['towelstuff', 'towelstuff.morestuff'],
         license='MIT',
         long_description=open('README.txt').read(),
     )
