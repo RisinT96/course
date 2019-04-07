@@ -345,6 +345,8 @@ Failing to observe this will result in an `UnboundLocalError` exception.
 
 You MAY use any other member function, including `__in__`, `__setitem__` and `__getitem__` (as shown above).
 
+---
+
 ## Builtin property decorator
 
 The builtin property decorator allows us to create a read only attribute or a just in time calculated value
