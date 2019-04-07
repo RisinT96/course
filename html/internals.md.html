@@ -1263,7 +1263,7 @@ aside {
         document.addEventListener('keydown', checkModifierKeyDown, false);
         document.addEventListener('DOMMouseScroll', handleWheel, false);
 
-        window.onmousewheel = document.onmousewheel = handleWheel;
+        document.onmousewheel = handleWheel;
         window.onresize = expandSlides;
 
         for (var i = 0, el; el = slides[i]; i++) {
@@ -2196,7 +2196,7 @@ There are two ways of calling parent methods. the explicit:</p>
         <div class="slide slide-18">
           <div class="inner">
             
-            <header><h2>Why to use <code>super</code>?</h2></header>
+            <header><h2>Why use <code>super</code>?</h2></header>
             
             
             <section><p><code>super</code> is recommended for several reasons:</p>
@@ -2348,7 +2348,7 @@ There are two ways of calling parent methods. the explicit:</p>
         <div class="slide slide-21">
           <div class="inner">
             
-            <header><h2>How <code>super</code> works?</h2></header>
+            <header><h2>How does <code>super</code> work?</h2></header>
             
             
             <section><p><strong>MRO</strong> - method resolution order</p>
@@ -3546,7 +3546,7 @@ Namespaces are one honking great idea -- let's do more of those!
         </tr>
         
         <tr id="toc-row-18" class="sub">
-          <th><a href="#slide18">Why to use <code>super</code>?</a></th>
+          <th><a href="#slide18">Why use <code>super</code>?</a></th>
           <td><a href="#slide18">18</a></td>
         </tr>
         
@@ -3561,7 +3561,7 @@ Namespaces are one honking great idea -- let's do more of those!
         </tr>
         
         <tr id="toc-row-21" class="sub">
-          <th><a href="#slide21">How <code>super</code> works?</a></th>
+          <th><a href="#slide21">How does <code>super</code> work?</a></th>
           <td><a href="#slide21">21</a></td>
         </tr>
         

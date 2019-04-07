@@ -329,7 +329,7 @@ And using super:
 
 ---
 
-## Why to use `super`?
+## Why use `super`?
 
 `super` is recommended for several reasons:
 
@@ -379,7 +379,7 @@ And using super:
 
 ---
 
-## How `super` works?
+## How does `super` work?
 
 **MRO** - method resolution order
 
