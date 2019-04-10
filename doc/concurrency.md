@@ -7,7 +7,7 @@
 Find all the prime numbers until 'end' in a given amount of 'threads'.
 
     !python
-    >>> calc_primes(end=50, threads=5)
+    >>> list(calc_primes(end=50, threads=5))
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
 
 Try to use `multiprocessing` module, to get performance gain (from multi-core CPU).
@@ -23,14 +23,14 @@ Try to use `multiprocessing` module, to get performance gain (from multi-core CP
         if n == 1: # 1 is special
             return False
 
-        divisors = xrange(2, (n / 2) + 1)
+        divisors = range(2, (n // 2) + 1)
         return all(n % d != 0 for d in divisors)
 
-    def calc_primes_pool(end, threads):
-        p = Pool(threads)
+    def calc_primes_pool(end, num_processes):
+        p = Pool(num_processes)
 
         results = []
-        for i in xrange(end):
+        for i in range(end):
             result = p.apply_async(is_prime, (i,))
             results.append((i, result))
 
