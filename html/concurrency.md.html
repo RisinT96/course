@@ -1263,7 +1263,7 @@ aside {
         document.addEventListener('keydown', checkModifierKeyDown, false);
         document.addEventListener('DOMMouseScroll', handleWheel, false);
 
-        window.onmousewheel = document.onmousewheel = handleWheel;
+        document.onmousewheel = handleWheel;
         window.onresize = expandSlides;
 
         for (var i = 0, el; el = slides[i]; i++) {
@@ -1318,7 +1318,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              1/13
+              1/17
             </aside>
           </footer>
         </div>
@@ -1334,11 +1334,15 @@ aside {
             
             <section><p>Find all the prime numbers until 'end' in a given amount of 'threads'.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">calc_primes</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">calc_primes</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
 <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">47</span><span class="p">]</span>
 </pre></div>
 </td></tr></table>
-<p>Try to use <code>multiprocessing</code> module, to get performance gain (from multi-core CPU).</p></section>
+<p>For each stage, run it on a multi-code CPU and measure the performance gain when using 5 workers vs 1 worker.</p>
+<p>1) Use <code>threading.Thread</code>. Save your work. Try running with end=5000 and killing the the threads with Ctrl+C while they're running? Did it work?</p>
+<p>2) Use <code>multiprocessing.dummy.Pool</code>.</p>
+<p>3) Use <code>multiprocessing.Pool</code>.</p>
+<p>What did you notice?</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -1354,7 +1358,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              2/13
+              2/17
             </aside>
           </footer>
         </div>
@@ -1393,14 +1397,14 @@ aside {
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># 1 is special</span>
         <span class="k">return</span> <span class="bp">False</span>
 
-    <span class="n">divisors</span> <span class="o">=</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">divisors</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">d</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">divisors</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">calc_primes_pool</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">threads</span><span class="p">):</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">calc_primes_pool</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">num_processes</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">num_processes</span><span class="p">)</span>
 
     <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">end</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">end</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">is_prime</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,))</span>
         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
 
@@ -1424,7 +1428,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              3/13
+              3/17
             </aside>
           </footer>
         </div>
@@ -1433,6 +1437,38 @@ aside {
       <!-- slide source: doc/concurrency.md -->
       <div class="slide-wrapper">
         <div class="slide slide-4">
+          <div class="inner">
+            
+            <header><h2>The GIL</h2></header>
+            
+            
+            <section><p>For CPU-bound tasks, Python threads don't offer a speedup.</p>
+<p>Watch "Python's Infamous GIL" <a href="https://www.youtube.com/watch?v=KVKufdTphKs">https://www.youtube.com/watch?v=KVKufdTphKs</a></p>
+<p>Watch "Gilectomy" <a href="https://www.youtube.com/watch?v=P3AyI_u66Bw">https://www.youtube.com/watch?v=P3AyI_u66Bw</a></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="doc/concurrency.md">doc/concurrency.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/17
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: doc/concurrency.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-5">
           <div class="inner">
             
             <header><h2>I/O-bound concurrency</h2></header>
@@ -1470,7 +1506,7 @@ $ netcat localhost 5000
             </aside>
             
             <aside class="page_number">
-              4/13
+              5/17
             </aside>
           </footer>
         </div>
@@ -1478,7 +1514,7 @@ $ netcat localhost 5000
       
       <!-- slide source: doc/concurrency.md -->
       <div class="slide-wrapper">
-        <div class="slide has_code slide-5">
+        <div class="slide has_code slide-6">
           <div class="inner">
             
             <header><h3>Naive implementation</h3></header>
@@ -1504,7 +1540,15 @@ $ netcat localhost 5000
 18
 19
 20
-21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># I&#39;d have written this using the built in socketserver module</span>
+
+<span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEPORT</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -1542,7 +1586,7 @@ $ netcat localhost 5000
             </aside>
             
             <aside class="page_number">
-              5/13
+              6/17
             </aside>
           </footer>
         </div>
@@ -1550,7 +1594,7 @@ $ netcat localhost 5000
       
       <!-- slide source: doc/concurrency.md -->
       <div class="slide-wrapper">
-        <div class="slide has_code slide-6">
+        <div class="slide has_code slide-7">
           <div class="inner">
             
             <header><h3>Naive threaded implementation</h3></header>
@@ -1577,7 +1621,17 @@ $ netcat localhost 5000
 19
 20
 21
-22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># I&#39;d have written this using the built in socketserver module,</span>
+<span class="c1"># and its ThreadingMixIn class.</span>
+
+<span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span> <span class="nn">threading</span>
+
+<span class="k">class</span> <span class="nc">Server</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEPORT</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -1616,7 +1670,7 @@ $ netcat localhost 5000
             </aside>
             
             <aside class="page_number">
-              6/13
+              7/17
             </aside>
           </footer>
         </div>
@@ -1624,7 +1678,7 @@ $ netcat localhost 5000
       
       <!-- slide source: doc/concurrency.md -->
       <div class="slide-wrapper">
-        <div class="slide has_code slide-7">
+        <div class="slide has_code slide-8">
           <div class="inner">
             
             <header><h2>Let's test it!</h2></header>
@@ -1688,7 +1742,7 @@ $ nc localhost <span class="m">5000</span>
             </aside>
             
             <aside class="page_number">
-              7/13
+              8/17
             </aside>
           </footer>
         </div>
@@ -1696,21 +1750,22 @@ $ nc localhost <span class="m">5000</span>
       
       <!-- slide source: doc/concurrency.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-8">
+        <div class="slide slide-9">
           <div class="inner">
             
             <header><h2>Discussion</h2></header>
             
             
-            <section><p>We forgot to make sure that <code>self.n</code> is updated <strong>atomically</strong>,
-and got a race condition.</p>
+            <section><p>We need to make sure that <code>self.n</code> is updated <strong>atomically</strong>,
+otherwise there's a race condition.</p>
 <p>We have to <strong>synchronize</strong> all accesses to shared memory between threads,
+using e.g. <code>threading.Lock</code> objects,
 because we cannot tell when the threads will be scheduled to run.</p>
 <p>Can we have something better?</p>
-<p>We would like our code to run atomically, but to be able to yield control to
+<p>We would like most of our code to run atomically, but to be able to yield control to
 other tasks, when we allow it to.</p>
 <p>This is called "cooperative multitasking", and the tasks (that use cooperation
-to achieve concurrency) are also called "green threads".</p>
+to achieve concurrency) are also called "green threads" or "greenlets". This concept is not unique to Python!</p>
 <p>Since Python currently does not support CPU-bound concurrency, we would like
 our tasks to cooperate around I/O events.</p>
 <p>Can we have <strong>atomicity</strong> on CPU access, but <strong>cooperation</strong> around I/O events?</p></section>
@@ -1729,7 +1784,7 @@ our tasks to cooperate around I/O events.</p>
             </aside>
             
             <aside class="page_number">
-              8/13
+              9/17
             </aside>
           </footer>
         </div>
@@ -1737,13 +1792,13 @@ our tasks to cooperate around I/O events.</p>
       
       <!-- slide source: doc/concurrency.md -->
       <div class="slide-wrapper">
-        <div class="slide has_code slide-9">
+        <div class="slide has_code slide-10">
           <div class="inner">
             
             <header><h2>Yes, we can!</h2></header>
             
             
-            <section><p>This is exactly what <code>gevent</code> library provides us.</p>
+            <section><p>This is exactly what <code>gevent</code> (<a href="https://pypi.org/project/gevent/">https://pypi.org/project/gevent/</a>) library provides us.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1788,7 +1843,7 @@ our tasks to cooperate around I/O events.</p>
             </aside>
             
             <aside class="page_number">
-              9/13
+              10/17
             </aside>
           </footer>
         </div>
@@ -1796,7 +1851,7 @@ our tasks to cooperate around I/O events.</p>
       
       <!-- slide source: doc/concurrency.md -->
       <div class="slide-wrapper">
-        <div class="slide has_code slide-10">
+        <div class="slide has_code slide-11">
           <div class="inner">
             
             <header><h2>Concurrent requests</h2></header>
@@ -1837,7 +1892,7 @@ our tasks to cooperate around I/O events.</p>
             </aside>
             
             <aside class="page_number">
-              10/13
+              11/17
             </aside>
           </footer>
         </div>
@@ -1845,7 +1900,7 @@ our tasks to cooperate around I/O events.</p>
       
       <!-- slide source: doc/concurrency.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-11">
+        <div class="slide slide-12">
           <div class="inner">
             
             <header><h2>Exceptions</h2></header>
@@ -1885,7 +1940,7 @@ socket.error: [Errno 111] Connection refused
             </aside>
             
             <aside class="page_number">
-              11/13
+              12/17
             </aside>
           </footer>
         </div>
@@ -1893,7 +1948,7 @@ socket.error: [Errno 111] Connection refused
       
       <!-- slide source: doc/concurrency.md -->
       <div class="slide-wrapper">
-        <div class="slide has_code slide-12">
+        <div class="slide has_code slide-13">
           <div class="inner">
             
             <header><h2>gevent-based server</h2></header>
@@ -1943,7 +1998,7 @@ socket.error: [Errno 111] Connection refused
             </aside>
             
             <aside class="page_number">
-              12/13
+              13/17
             </aside>
           </footer>
         </div>
@@ -1951,13 +2006,115 @@ socket.error: [Errno 111] Connection refused
       
       <!-- slide source: doc/concurrency.md -->
       <div class="slide-wrapper">
-        <div class="slide has_code slide-13">
+        <div class="slide slide-14">
+          <div class="inner">
+            
+            <header><h2>How Does Gevent work?</h2></header>
+            
+            
+            <section><p>Watch <a href="https://pyvideo.org/pycon-us-2016/kavya-joshi-a-tale-of-concurrency-through-creativity-in-python-a-deep-dive-into-how-gevent-works.html">https://pyvideo.org/pycon-us-2016/kavya-joshi-a-tale-of-concurrency-through-creativity-in-python-a-deep-dive-into-how-gevent-works.html</a></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="doc/concurrency.md">doc/concurrency.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/17
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: doc/concurrency.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-15">
+          <div class="inner">
+            
+            <header><h2>Monkey Patching</h2></header>
+            
+            
+            <section><p>Note we have to use gevent alternatives for every function that releases execution to the OS: gevent.sleep, gevent.socket, ...</p>
+<p>If a greenlet accidentally calls time.sleep instead of gevent.sleep, the whole application sleep, not just that greenlet.
+This is hard to catch, and causes significant performance problems.</p>
+<p>It is similar to sleeping with a lock, because it's really sleeping with a lock - the GIL!</p>
+<p>What if I call third-party code that call <code>time.sleep</code>?</p>
+<p>Monkey patching replaces the standard non-gevent modules and function with their gevent implementations.
+Better than littering your code with explicit import to gevent code, in my opinion. Others disagree.</p>
+<p>What happens if the call to <code>time.sleep</code> happens before we perform monkey patching?</p>
+<p>Monkey patching should be the first thing to happen in the app.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="doc/concurrency.md">doc/concurrency.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              15/17
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: doc/concurrency.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-16">
+          <div class="inner">
+            
+            <header><h2>The async and await keywords</h2></header>
+            
+            
+            <section><p>Greenlets, like threads, yield control implicitly.</p>
+<p>The <code>async</code> and <code>await</code> keywords enable explicit cooperative multitasking.</p>
+<p>None of the main libraries make use of this syntax at this time (Django, Flask, ...). Their APIs are very stable so integrating use of the keywords will take time.</p>
+<p>Watch <a href="https://www.youtube.com/watch?v=BI0asZuqFXM">https://www.youtube.com/watch?v=BI0asZuqFXM</a></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="doc/concurrency.md">doc/concurrency.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/17
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: doc/concurrency.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-17">
           <div class="inner">
             
             <header><h2>thredo</h2></header>
             
             
-            <section><p>Written by David Beazley (<a href="https://github.com/dabeaz/thredo">github.com/dabeaz/thredo</a>):</p>
+            <section><p>Ever tried to cancel a thread while it's working? Ctrl+C isn't always helpful.</p>
+<p>Written by David Beazley (<a href="https://github.com/dabeaz/thredo">github.com/dabeaz/thredo</a>):</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1996,7 +2153,9 @@ socket.error: [Errno 111] Connection refused
 
 <span class="n">thredo</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
 </pre></div>
-</td></tr></table></section>
+</td></tr></table>
+<p>Watch <a href="https://www.youtube.com/watch?v=xOyJiN3yGfU">https://www.youtube.com/watch?v=xOyJiN3yGfU</a></p>
+<p>It utilizes the new <code>async</code> and <code>await</code> keywords, like Beazley's <code>curio</code> module (<a href="https://github.com/dabeaz/curio">github.com/dabeaz/curio</a>).</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -2012,7 +2171,7 @@ socket.error: [Errno 111] Connection refused
             </aside>
             
             <aside class="page_number">
-              13/13
+              17/17
             </aside>
           </footer>
         </div>
@@ -2043,16 +2202,15 @@ socket.error: [Errno 111] Connection refused
         </tr>
         
         <tr id="toc-row-4" class="sub">
-          <th><a href="#slide4">I/O-bound concurrency</a></th>
+          <th><a href="#slide4">The GIL</a></th>
           <td><a href="#slide4">4</a></td>
         </tr>
         
-      
-      
-      <tr id="toc-row-5">
-        <th><a href="#slide5">-</a></th>
-        <td><a href="#slide5">5</a></td>
-      </tr>
+        <tr id="toc-row-5" class="sub">
+          <th><a href="#slide5">I/O-bound concurrency</a></th>
+          <td><a href="#slide5">5</a></td>
+        </tr>
+        
       
       
       <tr id="toc-row-6">
@@ -2060,40 +2218,61 @@ socket.error: [Errno 111] Connection refused
         <td><a href="#slide6">6</a></td>
       </tr>
       
-        
-        <tr id="toc-row-7" class="sub">
-          <th><a href="#slide7">Let's test it!</a></th>
-          <td><a href="#slide7">7</a></td>
-        </tr>
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">-</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
         
         <tr id="toc-row-8" class="sub">
-          <th><a href="#slide8">Discussion</a></th>
+          <th><a href="#slide8">Let's test it!</a></th>
           <td><a href="#slide8">8</a></td>
         </tr>
         
         <tr id="toc-row-9" class="sub">
-          <th><a href="#slide9">Yes, we can!</a></th>
+          <th><a href="#slide9">Discussion</a></th>
           <td><a href="#slide9">9</a></td>
         </tr>
         
         <tr id="toc-row-10" class="sub">
-          <th><a href="#slide10">Concurrent requests</a></th>
+          <th><a href="#slide10">Yes, we can!</a></th>
           <td><a href="#slide10">10</a></td>
         </tr>
         
         <tr id="toc-row-11" class="sub">
-          <th><a href="#slide11">Exceptions</a></th>
+          <th><a href="#slide11">Concurrent requests</a></th>
           <td><a href="#slide11">11</a></td>
         </tr>
         
         <tr id="toc-row-12" class="sub">
-          <th><a href="#slide12">gevent-based server</a></th>
+          <th><a href="#slide12">Exceptions</a></th>
           <td><a href="#slide12">12</a></td>
         </tr>
         
         <tr id="toc-row-13" class="sub">
-          <th><a href="#slide13">thredo</a></th>
+          <th><a href="#slide13">gevent-based server</a></th>
           <td><a href="#slide13">13</a></td>
+        </tr>
+        
+        <tr id="toc-row-14" class="sub">
+          <th><a href="#slide14">How Does Gevent work?</a></th>
+          <td><a href="#slide14">14</a></td>
+        </tr>
+        
+        <tr id="toc-row-15" class="sub">
+          <th><a href="#slide15">Monkey Patching</a></th>
+          <td><a href="#slide15">15</a></td>
+        </tr>
+        
+        <tr id="toc-row-16" class="sub">
+          <th><a href="#slide16">The async and await keywords</a></th>
+          <td><a href="#slide16">16</a></td>
+        </tr>
+        
+        <tr id="toc-row-17" class="sub">
+          <th><a href="#slide17">thredo</a></th>
+          <td><a href="#slide17">17</a></td>
         </tr>
         
       

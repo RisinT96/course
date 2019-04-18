@@ -10,7 +10,15 @@ Find all the prime numbers until 'end' in a given amount of 'threads'.
     >>> list(calc_primes(end=50, threads=5))
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
 
-Try to use `multiprocessing` module, to get performance gain (from multi-core CPU).
+For each stage, run it on a multi-code CPU and measure the performance gain when using 5 workers vs 1 worker.
+
+1) Use `threading.Thread`. Save your work. Try running with end=5000 and killing the the threads with Ctrl+C while they're running? Did it work?
+
+2) Use `multiprocessing.dummy.Pool`.
+
+3) Use `multiprocessing.Pool`.
+
+What did you notice?
 
 ---
 
@@ -40,6 +48,16 @@ Try to use `multiprocessing` module, to get performance gain (from multi-core CP
 
 ---
 
+## The GIL
+
+For CPU-bound tasks, Python threads don't offer a speedup.
+
+Watch "Python's Infamous GIL" [https://www.youtube.com/watch?v=KVKufdTphKs](https://www.youtube.com/watch?v=KVKufdTphKs)
+
+Watch "Gilectomy" [https://www.youtube.com/watch?v=P3AyI_u66Bw](https://www.youtube.com/watch?v=P3AyI_u66Bw)
+
+---
+
 ## I/O-bound concurrency
 
 Let's say we want to write a TCP server that counts the number of connection
@@ -65,6 +83,11 @@ attempts, and writes it back to the client.
 ### Naive implementation
 
     !python
+
+    # I'd have written this using the built in socketserver module
+
+    import socket
+
     class Server(object):
         def __init__(self):
             self.s = socket.socket()
@@ -92,6 +115,12 @@ attempts, and writes it back to the client.
 ### Naive threaded implementation
 
     !python
+
+    # I'd have written this using the built in socketserver module,
+    # and its ThreadingMixIn class.
+
+    import socket, threading
+
     class Server(object):
         def __init__(self):
             self.s = socket.socket()
@@ -146,19 +175,20 @@ attempts, and writes it back to the client.
 
 ## Discussion
 
-We forgot to make sure that `self.n` is updated **atomically**,
-and got a race condition.
+We need to make sure that `self.n` is updated **atomically**,
+otherwise there's a race condition.
 
 We have to **synchronize** all accesses to shared memory between threads,
+using e.g. `threading.Lock` objects,
 because we cannot tell when the threads will be scheduled to run.
 
 Can we have something better?
 
-We would like our code to run atomically, but to be able to yield control to
+We would like most of our code to run atomically, but to be able to yield control to
 other tasks, when we allow it to.
 
 This is called "cooperative multitasking", and the tasks (that use cooperation
-to achieve concurrency) are also called "green threads".
+to achieve concurrency) are also called "green threads" or "greenlets". This concept is not unique to Python!
 
 Since Python currently does not support CPU-bound concurrency, we would like
 our tasks to cooperate around I/O events.
@@ -169,7 +199,7 @@ Can we have **atomicity** on CPU access, but **cooperation** around I/O events?
 
 ## Yes, we can!
 
-This is exactly what `gevent` library provides us.
+This is exactly what `gevent` ([https://pypi.org/project/gevent/](https://pypi.org/project/gevent/)) library provides us.
 
     !python
     >>> from gevent import socket
@@ -249,11 +279,49 @@ It's much better than the default thread behaviour.
             self.n = self.n + 1
             conn.sendall('<{0}>\n'.format(self.n))
             conn.close()
+---
 
+## How Does Gevent work?
+
+Watch [https://pyvideo.org/pycon-us-2016/kavya-joshi-a-tale-of-concurrency-through-creativity-in-python-a-deep-dive-into-how-gevent-works.html](https://pyvideo.org/pycon-us-2016/kavya-joshi-a-tale-of-concurrency-through-creativity-in-python-a-deep-dive-into-how-gevent-works.html)
+
+---
+
+## Monkey Patching
+
+Note we have to use gevent alternatives for every function that releases execution to the OS: gevent.sleep, gevent.socket, ...
+
+If a greenlet accidentally calls time.sleep instead of gevent.sleep, the whole application sleep, not just that greenlet.
+This is hard to catch, and causes significant performance problems.
+
+It is similar to sleeping with a lock, because it's really sleeping with a lock - the GIL!
+
+What if I call third-party code that call `time.sleep`?
+
+Monkey patching replaces the standard non-gevent modules and function with their gevent implementations.
+Better than littering your code with explicit import to gevent code, in my opinion. Others disagree.
+
+What happens if the call to `time.sleep` happens before we perform monkey patching?
+
+Monkey patching should be the first thing to happen in the app.
+
+---
+
+## The async and await keywords
+
+Greenlets, like threads, yield control implicitly.
+
+The `async` and `await` keywords enable explicit cooperative multitasking.
+
+None of the main libraries make use of this syntax at this time (Django, Flask, ...). Their APIs are very stable so integrating use of the keywords will take time.
+
+Watch [https://www.youtube.com/watch?v=BI0asZuqFXM](https://www.youtube.com/watch?v=BI0asZuqFXM)
 
 ---
 
 ## thredo
+
+Ever tried to cancel a thread while it's working? Ctrl+C isn't always helpful.
 
 Written by David Beazley ([github.com/dabeaz/thredo](https://github.com/dabeaz/thredo)):
 
@@ -278,3 +346,6 @@ Written by David Beazley ([github.com/dabeaz/thredo](https://github.com/dabeaz/t
 
     thredo.run(main)
 
+Watch [https://www.youtube.com/watch?v=xOyJiN3yGfU](https://www.youtube.com/watch?v=xOyJiN3yGfU)
+
+It utilizes the new `async` and `await` keywords, like Beazley's `curio` module ([github.com/dabeaz/curio](https://github.com/dabeaz/curio)).
