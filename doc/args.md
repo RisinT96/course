@@ -18,7 +18,7 @@ Usage example:
 Implementation example:
 
 	!python
-	def f(*args): # you can call it in a different name if you want, the * is a must
+	def f(*args): # you can give it a different name if you want, the * is required
 		print(type(args), args)
 
 	>>> f(1, 2, 3)
@@ -26,7 +26,7 @@ Implementation example:
 
 ---
 
-The reverse operation - pass a sequence as the arguments:
+The reverse operation - pass a sequence's elements as separate arguments:
 
 	!python
 	>>> f(*(1,2,3))

@@ -293,7 +293,7 @@ It is used throughout the standard library (e.g. `multiprocessing`).
 
 Not all objects are pickleable: sockets, methods (not functions, methods), etc'.
 
-If your object is not pickleable, or you want to pickle it in a custom way you can define methods for `pickle` to use: `__getstate__` and `__setstate__`.
+If your object is not pickleable, or you want to pickle it in a custom way, you can define methods for `pickle` to use: `__getstate__` and `__setstate__`.
 
 ---
 

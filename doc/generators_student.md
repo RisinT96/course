@@ -1,6 +1,6 @@
 # Generators
 
-Generators can yield values, accept values via send and process exception via throw.
+Generators can yield values, accept values via send and process exceptions via throw.
 
 	!python
 	def generator():
