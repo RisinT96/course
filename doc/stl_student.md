@@ -166,13 +166,14 @@ Bonus: implement the grep process as a python script.
 
 ## StringIO
 
-The `StringIO` module has two use cases:
+The `io.StringIO` and `io.BytesIO` classes have two use cases:
 
 ### Mimic a `file` object
 
 The `StringIO.StringIO` object implements the file object interface and behaves as an in-memory file.
 
 	!python
+	from io import StringIO
 	def ungzip(string):
 		return GzipFile(fileobj=StringIO(string)).read()
 
@@ -220,19 +221,19 @@ A faster and more elegent implementation:
 
 ## pickle
 
-`pickle` or it's C implementation `cPickle` provides serialization functions for python objects:
+`pickle` provides serialization functions for python objects:
 
 	!python
-	>>> cPickle.dumps([1, 2])
-	'(lp1\nI1\naI2\na.'
-	>>> cPickle.loads(_)
+	>>> pickle.dumps([1, 2])
+	b'\x80\x03]q\x00(K\x01K\x02e.'
+	>>> pickle.loads(_)
 	[1, 2]
 
 It is used throughout the standard library (e.g. `multiprocessing`).
 
 Not all objects are pickleable: sockets, methods (not functions, methods), etc'.
 
-If your object is not pickleable, or you want to pickle it in a custom way you can define methods for `pickle` to use: `__getstate__` and `__setstate__`.
+If your object is not pickleable, or you want to pickle it in a custom way, you can define methods for `pickle` to use: `__getstate__` and `__setstate__`.
 
 ---
 
@@ -256,7 +257,7 @@ Hint: `obj[key]` translates to `obj.__getitem__(key)`, `obj[key] = value` transl
 
 * `itertools` - generators versions to existing functions and more: izip, islice, imap, ifilter, cycle, repeat, chain, groupby.
 * `array` - lists to/from C arrays. good for interacting with the OS.
-* `struct` - build and unpack C types and structs.
+* `struct` - build and unpack C types and structs -> consider using `construct` module (by Tomer Filiba)
 * `argparse` - from 2.7. if not available can be installed as package.
 * `brownie` - not in the stdlib. contains many nice utilities like `ImmutableDict`.
 
@@ -340,7 +341,7 @@ What would be the fastest way to xor a buffer with 0x7b?
 
 ---
 
-### Exercise 2 - echo server
+### Exercise 8 - echo server
 
 Implement an echo server, which upper cases every input. It should support multiple clients concurrently. Remember the limitation on number of threads. consider using select/poll.
 

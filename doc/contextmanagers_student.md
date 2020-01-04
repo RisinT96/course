@@ -17,7 +17,7 @@ Examples:
 	finally:
 		lock.release()
 
-    with file('/tmp/bla', 'w') as f:
+    with open('/tmp/bla', 'w') as f:
 		f.write('data')
 	    1 / 0 # even though an exception is raised the file is closed
 
@@ -119,10 +119,10 @@ The exception information is passed by simply throwing the exception into the ge
 	!python
 	def benchmark():
 		with Timed("list comprehension"):
-			[str(i) for i in xrange(100000)]
+			[str(i) for i in range(10000000)]
 		with Timed("map"):
-	        map(str, xrange(100000))
+			list(map(str, range(10000000)))
 
 	>>> benchmark()
-	list comprehension took 0.0324079990387
-    map took 0.0171928405762
+	list comprehension took 1.707427ms
+	map took 1.455476ms

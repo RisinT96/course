@@ -132,9 +132,7 @@ A function that generates a decorator
 			def decorated(*args, **kwargs):
 				try:
 					return func(*args, **kwargs)
-				except Exception as e:
-					if type(e) not in exception_types:
-						raise
+				except exception_types:
 					return default
 			return decorated
 		return decorator
@@ -159,8 +157,9 @@ Adding some type safety
 
 	>>> add(5, "bla")
 	Traceback (most recent call last):
+	...
 	  File "<stdin>", line 1, in <module>
-    TypeError: invalid type for argument y. expected int, got str
+	TypeError: TypeError: expected <class 'int'> got <class 'str'> for argument 1: foo
 
 ---
 
@@ -287,3 +286,103 @@ This method can be used to save cpu time in exchange for memory.
 
 Bonus - add a 'timeout' parameter to the cached decorator, indicating how long should objects stay in the cache.
 
+---
+
+## Builtin property decorator
+
+The builtin property decorator allows us to create a read only attribute or a just in time calculated value
+
+    !python
+    class Foo(object):
+    
+        def __init__(self, value=None):
+            self._value = value
+        
+        @property
+        def double_value(self):
+            if self._value is None:
+                return None
+            return self._value * 2
+    
+    >>> foo = Foo('bar')
+    >>> foo.double_value
+    barbar
+    >>> foo.double_value = 'foobar'
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    AttributeError: can't set attribute
+
+---
+
+## Builtin property decorator - setter
+
+If we wish we can create a "magic" setter for our value by using property decorator setter
+
+    !python
+    class Foo(object):
+    
+        def __init__(self, value=None):
+            self._value = value
+        
+        @property
+        def value(self):
+            return self._value
+    
+        @value.setter
+        def value(self, value):
+            self._value = value
+    
+    >>> foo = Foo('bar')
+    >>> foo.value
+    bar
+    >>> foo.value = 'foobar'
+    >>> foo.value
+    foobar
+
+---
+
+## Exercise 4 - why doesn't it work? (code)
+
+First let's write some classes
+
+    !python
+    class Foo(object):
+    
+        def __init__(self, value=None):
+            self._value = value
+        
+        @property
+        def value(self):
+            raise NotImplementedError('No value here')
+    
+        @value.setter
+        def value(self, value):
+            self._value = value
+
+    class FooBar(Foo):
+    
+        @property
+        def value(self):
+            return self._value
+
+---
+
+## Exercise 4 - why doesn't it work? (usage)
+
+Let's use them now
+    
+    !python
+    >>> foo = Foo('Hello foo')
+    >>> foo.value
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    NotImplementedError: No value here
+    >>> foo.value = 'blah'
+    
+    >>> foobar = FooBar('Hello foobar')
+    >>> foobar.value
+    Hello foobar
+    >>> foobar.value = 'blah'
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    AttributeError: can't set attribute
