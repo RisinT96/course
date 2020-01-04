@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+ipython = "*"
+numpy = "*"
+scipy = "*"
+matplotlib = "*"
+jupyter = "*"
+pandas = "*"
+rpyc = "*"
+landslide = "*"
+pudb = "*"
+pytest = "*"
+flamegraph = {git = "https://github.com/evanhempel/python-flamegraph.git"}
+pyprof2calltree = "*"
+gevent = "*"
+altair = "*"
+
+[requires]
+python_version = "3.7"
