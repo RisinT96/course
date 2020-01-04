@@ -12,9 +12,10 @@ Generators can yield values, accept values via send and process exceptions via t
 		except Exception as e:
 			print("caught {}".format(e))
 
-	>>> gen.next()  # same as `next(gen)`
+	>>> gen = generator()
+	>>> next(gen)
 	1
-	>>> gen.next()
+	>>> next(gen)
 	>>> gen.send(2)
 	2
 	>>> gen.throw(ValueError(3))
@@ -61,27 +62,16 @@ Note: import can be done using `import os` and `from os import environ`.
 
 ## Map and filter
 
-Map and filter provide an alternative for list comprehensions and for loops.
+Generally, list comprehensions are preferred to use of map and filter.
 
-The following examples show cases where they are preferred over regular for loops and list comprehensions:
 
 	!python
 	>>> ints = [5, 6, 7]
-	>>> filter(is_prime, ints) # [i for i in ints if is_prime(i)]
+	>>> list(filter(is_prime, ints)) # [i for i in ints if is_prime(i)]
 	[5, 7]
-	>>> map(str, ints) # [str(i) for i in ints]
+	>>> list(map(str, ints)) # [str(i) for i in ints]
 	['5', '6', '7']
 
-The itertools module provides `ifilter` and `imap` for generator versions:
-
-	!python
-	>>> ints = [5, 6, 7]
-	>>> from itertools import ifilter
-	>>> first_prime = ifilter(is_prime, ints).next() # no need to process the whole list!
-	>>> first_prime
-	5
-
-TIP: map and filter are implemented in C. they can be up to twice as fast.
 
 ---
 
@@ -90,7 +80,7 @@ TIP: map and filter are implemented in C. they can be up to twice as fast.
 Reducers take a sequence and return a single value.
 
 	!python
-	>>> sum(xrange(4))
+	>>> sum(range(4))
 	6
 	>>> sum([[1], [2]], [])
 	[1, 2]
@@ -98,7 +88,7 @@ Reducers take a sequence and return a single value.
 	False
 	>>> any([True, False])
 	True
-	>>> max(xrange(4))
+	>>> max(range(4))
 	3
 	>>> people = [{'name': 'bar', 'age': 30}, {'name': 'foo', 'age': 20}]
 	>>> min(people, key=lambda person: person['age'])
@@ -175,24 +165,18 @@ Print(the first N primes. (a prime number is bigger then 1 and divides only by i
 ## Exercise 4 - solution
 
 	!python
-	from itertools import ifilter, count
-    import math
-
-	def take(n, gen):
-		for i in xrange(n):
-			yield gen.next()
+	from itertools import count
 
 	def is_prime(n):
 		if n == 1: # 1 is special
 			return False
-		for i in xrange(2, math.ceil(n ** 0.5) + 1):
-			if n % i == 0:
-				return False
-		return True
+
+		divisors = range(2, (n // 2) + 1)
+		return all(n % d != 0 for d in divisors)
 
 	def prime_generator():
-        integers = count(1)  # infinite generator
-		return ifilter(is_prime, integers)
+		integers = count(1)  # infinite generator
+		return filter(is_prime, integers)
 
 ---
 
@@ -200,7 +184,7 @@ Print(the first N primes. (a prime number is bigger then 1 and divides only by i
 
 	!python
 	def get_first_primes(n):
-		return take(n, prime_generator())
+		return islice(prime_generator(), n)
 
 	def print_first_primes(n):
 		for prime in get_first_primes(n):
@@ -208,9 +192,9 @@ Print(the first N primes. (a prime number is bigger then 1 and divides only by i
 
 	def get_primes(start, end):
 		gen = prime_generator()
-		for i in take(start, gen):
+		for i in islice(gen, start):
 			pass
-		return take(end - start, gen)
+		return islice(gen, end - start)
 
 	def print_primes(start, end):
 		for prime in get_primes(start, end):

@@ -175,8 +175,9 @@ Adding some type safety
 
 	>>> add(5, "bla")
 	Traceback (most recent call last):
+	...
 	  File "<stdin>", line 1, in <module>
-    TypeError: invalid type for argument y. expected int, got str
+	TypeError: TypeError: expected <class 'int'> got <class 'str'> for argument 1: foo
 
 ---
 
@@ -184,18 +185,18 @@ Adding some type safety
 
 	!python
 	def typesafe(*types):
+		n_types = len(types)
 		def decorator(func):
 			def decorated(*args):
 				n_args = len(args)
-				n_types = len(types)
 				if n_args != n_types:
-					fmt = "invalid num of args. expected {}, got {}"
-					raise ValueError(fmt.format(n_types, n_args)))
+					s = f'invalid num of args. expected {n_types}, got {n_args}'
+					raise ValueError(s)
 
-				for arg, arg_type in zip(args, types):
+				for i, (arg, arg_type) in enumerate(zip(args, types)):
 					if not isinstance(arg, arg_type):
-						fmt = "expected {} got {} for argument {}"
-						raise TypeError(fmt.format(arg_type, type(arg), arg))
+						s = f'expected {arg_type} got {type(arg)} for argument {i}: {arg}'
+						raise TypeError(s)
 				return func(*args)
 			return decorated
 		return decorator

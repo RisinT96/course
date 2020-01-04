@@ -67,14 +67,14 @@ globals() returns global variables.
 
 	>>> dis.dis(global_test)
 	2           0 LOAD_GLOBAL              0 (glob)
-                3 RETURN_VALUE
+                2 RETURN_VALUE
 
 	>>> dis.dis(local_test)
-    2           0 LOAD_CONST               1 (100)
-                3 STORE_FAST               0 (loc)
+    2           0 LOAD_CONST               1 (200)
+                2 STORE_FAST               0 (loc)
 
-    3           6 LOAD_FAST                0 (loc)
-                9 RETURN_VALUE
+    3           4 LOAD_FAST                0 (loc)
+                6 RETURN_VALUE
 
 ---
 
@@ -194,11 +194,11 @@ The `__setattr__` method is called when setting all members.
 	!python
     class CaseInsensitive(object):
         def __setattr__(self, name, value):
-            return object.__setattr__(self, name.lower(), value)
+            return super().__setattr__(name.lower(), value)
         def __getattribute__(self, name):
-            return object.__getattribute__(self, name.lower())
+            return super().__getattribute__(name.lower())
 
-Note that we are using `object` because looking at `self.__dict__`
+Note that we are using `super()` because looking at `self.__dict__`
 will trigger an infinite recursion of `__getattr__/__setattr__`.
 
 ---
@@ -451,11 +451,15 @@ After looking at the PYTHONPATH, python looks in the package installation path:
 	!python
 	>>> import site
 	>>> site.getsitepackages()
-	['/usr/local/lib/python2.7/dist-packages',
-     '/usr/lib/python2.7/dist-packages']
+	['/usr/local/lib/python3.7/dist-packages',
+	 '/usr/lib/python3/dist-packages',
+	 '/usr/lib/python3.7/dist-packages']
+
 
 Finally python looks at the stdlib directory, On Linux, it's
-`/usr/lib/python2.7/`
+`/usr/lib/python3.7`
+
+(In virtual environments there are more steps, and `site.getsitepackages()` might not be available)
 
 After a module has been found and compiled it is stored in `sys.modules`.
 
@@ -480,18 +484,17 @@ for more details, look at `sys.meta_path` and `sys.path_hooks`.
 `exec` - execute code:
 
 	!python
-	>>> exec("print 10")
+	>>> exec('print(10)')
 	1
-	>>> execfile("/tmp/bla.py")
 
 `eval` - evaluate an expression:
 
 	!python
 	>>> eval("1 + 1")
 
-NOTE: `eval` and `exec` can be a serious security risk, try to avoid them.
+NOTE: `eval` and `exec` can be a serious security risk, try to avoid using them.
 
-NOTE2: `eval`, `exec` and `execfile` all receive optional `locals` and `globals` arguments. by passing new dictionaries we can run the code in a partially isolated environment. BUT it still doesn't count as safe.
+NOTE2: `eval` and `exec` receive optional `locals` and `globals` arguments. By passing new dictionaries we can run the code in a partially isolated environment. BUT it still doesn't count as safe.
 
 ---
 
@@ -571,10 +574,10 @@ The stack frames points to the code object, local variables, the previous stack 
 	!python
 	>>> def print_stack():
 	...     frame = sys._getframe(0) # first frame
-	...     print frame
-	...     print frame.f_code # the code object
-	...     print frame.f_locals # locals()
-	...     print frame.f_back  # previous frame
+	...     print(frame)
+	...     print(frame.f_code) # the code object
+	...     print(frame.f_locals) # locals()
+	...     print(frame.f_back)  # previous frame
 	>>> print_stack()
 	<frame object at 0x100379df0>
 	<code object print_stack at 0x100437830, file "<stdin>", line 1>
@@ -619,7 +622,7 @@ Python functions are simple function objects.
 	def func():
 		pass
 
-	>>> print func
+	>>> print(func)
 	<function __main__.func>
 
 Python methods are a bit different.
@@ -629,7 +632,7 @@ Python methods are a bit different.
 		def foo(self):
 			pass
 
-	>>> print A().foo
+	>>> print(A().foo)
 	<bound method A.foo of <__main__.A object at 0x101e4aed0>>
 
 ---
@@ -640,9 +643,9 @@ There's a reason for that:
 	>>> a = A()
 	>>> foo = a.foo
 	>>> foo() # where is 'self'?
-	>>> print foo.im_func
+	>>> print(foo.im_func)
 	<function __main__.foo>
-	>>> print foo.im_self
+	>>> print(foo.im_self)
 	<__main__.A at 0x101e4afd0>
 
 So calling bound methods:
@@ -662,9 +665,9 @@ Unbound methods are methods of the class:
 	!python
 	>>> A.foo
 	<unbound method A.foo>
-	>>> print A.foo.im_self # no instance
+	>>> print(A.foo.im_self) # no instance
 	None
-	>>> print A.foo.im_class
+	>>> print(A.foo.im_class)
 	<class __main__.A>
 
 One of the reasons the `im_class` attribute exists is this:
@@ -739,7 +742,7 @@ Avoid this:
 	!python
 	def f(x=[]):
 	    x.append(1)
-		print x
+		print(x)
 	>>> f()
 	[1]
 	>>> f()
@@ -758,7 +761,7 @@ Do this:
 		if x is None:
 			x = []
 		x.append(1)
-		print x
+		print(x)
 	>>> f()
 	[1]
 	>>> f()
@@ -795,7 +798,7 @@ Nested scopes allow functions to access variables defined in enclosing scopes.
 	...         return x + y
 	... 	return add
 	>>> add5 = addx(5)
-	>>> print add5(3)
+	>>> print(add5(3))
 	8
 
 How does it work?

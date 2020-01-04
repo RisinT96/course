@@ -104,7 +104,7 @@ attempts, and writes it back to the client.
         def handle(self, conn, peer):
             tmp = self.n
             t = time.time()
-            for i in xrange(1000000):
+            for i in range(1000000):
                 pass  # simulate request processing
             dt = time.time() - t
             self.n = tmp + 1
@@ -138,7 +138,7 @@ attempts, and writes it back to the client.
         def handle(self, conn, peer):
             tmp = self.n
             t = time.time()
-            for i in xrange(1000000):
+            for i in range(1000000):
                 pass  # simulate request processing
             dt = time.time() - t
             self.n = tmp + 1

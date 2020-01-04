@@ -243,7 +243,7 @@ We can "travel" up and down the stack, and pring local variables:
      11
      12     if __name__ == '__main__':
      13         import sys
-     14         args = map(float, sys.argv[1:])
+     14         args = list(map(float, sys.argv[1:]))
 
     (Pdb) p res
     1.3333333333333333

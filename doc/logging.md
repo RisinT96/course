@@ -13,12 +13,12 @@
 	>>> try:
 	>>>     1 / 0
 	>>> except Exception as e:
-	>>>     logger.exception("caught {}".format(e))
-	caught integer division or modulo by zero
+	>>>     logger.exception(f'caught {e}')
+	caught division by zero
 	Traceback (most recent call last):
 	  File "<ipython-input-19-dd7b8f0dab6f>", line 2, in <module>
         1/0
-	ZeroDivisionError: integer division or modulo by zero
+	ZeroDivisionError: division by zero
 
 Why isn't the info printed?
 

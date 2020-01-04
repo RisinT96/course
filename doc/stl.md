@@ -227,13 +227,14 @@ main.py:
 
 ## StringIO
 
-The `StringIO` module has two use cases:
+The `io.StringIO` and `io.BytesIO` classes have two use cases:
 
 ### Mimic a `file` object
 
 The `StringIO.StringIO` object implements the file object interface and behaves as an in-memory file.
 
 	!python
+	from io import StringIO
 	def ungzip(string):
 		return GzipFile(fileobj=StringIO(string)).read()
 
@@ -244,8 +245,6 @@ This is also great for unittest:
 	def test_grep():
 		assert ["foo", "foobar"] == grep("foo", StringIO("foo\nbar\nfoobar"))
 
-
-Note: the `cStringIO` module is a (faster) C implementation of StringIO.
 
 ---
 
@@ -281,12 +280,12 @@ A faster and more elegent implementation:
 
 ## pickle
 
-`pickle` or it's C implementation `cPickle` provides serialization functions for python objects:
+`pickle` provides serialization functions for python objects:
 
 	!python
-	>>> cPickle.dumps([1, 2])
-	'(lp1\nI1\naI2\na.'
-	>>> cPickle.loads(_)
+	>>> pickle.dumps([1, 2])
+	b'\x80\x03]q\x00(K\x01K\x02e.'
+	>>> pickle.loads(_)
 	[1, 2]
 
 It is used throughout the standard library (e.g. `multiprocessing`).
