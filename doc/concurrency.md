@@ -346,6 +346,8 @@ Written by David Beazley ([github.com/dabeaz/thredo](https://github.com/dabeaz/t
 
     thredo.run(main)
 
+---
+
 Watch [https://www.youtube.com/watch?v=xOyJiN3yGfU](https://www.youtube.com/watch?v=xOyJiN3yGfU)
 
 It utilizes the new `async` and `await` keywords, like Beazley's `curio` module ([github.com/dabeaz/curio](https://github.com/dabeaz/curio)).
