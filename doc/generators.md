@@ -10,7 +10,7 @@ Generators can yield values, accept values via send and process exceptions via t
 		try:
 			yield
 		except Exception as e:
-			print("caught {}".format(e))
+			print(f'caught {e}')
 
 	>>> gen = generator()
 	>>> next(gen)

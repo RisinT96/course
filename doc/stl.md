@@ -186,8 +186,8 @@ grep.py:
 main.py:
 
 	!python
-	def grep(string, path):
-		proc = subprocess.Popen("python grep.py {} {}".format(string, path),
+	def grep(pattern, path):
+		proc = subprocess.Popen(f'python grep.py {pattern} {path}',
 		                        stdout=subprocess.PIPE,
 							    shell=True)
 		return map(str.strip, proc.stdout.readlines())
@@ -201,8 +201,8 @@ main.py:
 	chars in spam and not in eggs: apm
 	chars in eggs and not in spam: eg
 	chars in one and not the other: aegmp
-	chars in both strings:  s
-	all chars:  apsegm
+	chars in both strings: s
+	all chars: apsegm
 	spam contained in eggs: False
 	eggs contained in spam: False
 
@@ -215,13 +215,13 @@ main.py:
 		a_set = set(a)
 		b_set = set(b)
 		join_set = ''.join
-		print("chars in {} and not in {}: {}".format(a, b, join_set(a_set - b_set)))
-		print("chars in {} and not in {}: {}".format(b, a, join_set(b_set - a_set)))
-		print("chars in one and not the other:", join_set(a_set ^ b_set))
-		print("chars in both strings: ", join_set(a_set & b_set))
-		print("all chars: ", join_set(a_set | b_set))
-		print("{} contained in {}: {}".format(a, b, a_set <= b_set))
-		print("{} contained in {}: {}".format(b, a, b_set <= a_set))
+		print(f'chars in {a} and not in {b}: {join_set(a_set - b_set)}')
+		print(f'chars in {b} and not in {a}: {join_set(b_set - a_set)}')
+		print(f'chars in one and not the other: {join_set(a_set ^ b_set)}')
+		print(f'chars in both strings: {join_set(a_set & b_set)}')
+		print(f'all chars: {join_set(a_set | b_set)}')
+		print(f'{a} contained in {b}: {a_set <= b_set}')
+		print(f'{b} contained in {a}: {b_set <= a_set}')
 
 ---
 

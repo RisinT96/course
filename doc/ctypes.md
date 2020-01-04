@@ -24,8 +24,8 @@ It's part of CPython from 2.5 version.
 
     !python
     >>> import ctypes as c
-    >>> d = c.CDLL("libc.so.6")  # /lib/x86_64-linux-gnu/libc.so.6
-    >>> print(d.printf("Hello Linux World\n"))
+    >>> d = c.CDLL('libc.so.6')  # /lib/x86_64-linux-gnu/libc.so.6
+    >>> print(d.printf('Hello Linux World\n'))
     Hello Linux World
     18
 
@@ -35,7 +35,7 @@ It's part of CPython from 2.5 version.
     !python
     >>> import ctypes as c
     >>> d = c.CDLL('msvcrt')
-    >>> print(d.printf("Hello Windows World\n"))
+    >>> print(d.printf('Hello Windows World\n'))
     Hello Windows World
     20
 
@@ -62,20 +62,20 @@ What should happen when this code runs?
 
     !python
     >>> x = 123
-    >>> d.printf("x = %d\n", x)
+    >>> d.printf('x = %d\n', x)
 
 And now?
 
     !python
     >>> x = 123
     >>> y = 45
-    >>> d.printf("x = %d\n", x, y)
+    >>> d.printf('x = %d\n', x, y)
 
 And now?
 
     !python
     >>> x = 123
-    >>> d.printf("x = %s\n", x)
+    >>> d.printf('x = %s\n', x)
 
 ---
 
@@ -152,22 +152,19 @@ An example:
 
     !python
     >>> printf = libc.printf
-    >>> printf("Hello, %s\n", "World")
+    >>> printf('Hello, %s\n', 'World')
     Hello, World
     13
-    >>> printf("Hello, %S\n", u"World")
-    Hello, World
-    13
-    >>> printf("%d bottles of beer\n", 42)
+    >>> printf('%d bottles of beer\n', 42)
     42 bottles of beer
     19
-    >>> printf("%f bottles of beer\n", 42.5)
+    >>> printf('%f bottles of beer\n', 42.5)
     Traceback (most recent call last):
       File "<stdin>", line 1, in ?
     ArgumentError: argument 2: exceptions.TypeError: \
                 Don't know how to convert parameter 2
 
-    >>> printf("An int %d, a double %f\n", 1234, c_double(3.14))
+    >>> printf('An int %d, a double %f\n', 1234, c_double(3.14))
     An int 1234, a double 3.140000
     31
 
@@ -177,12 +174,12 @@ An example:
 
     !python
     >>> strchr = libc.strchr
-    >>> strchr("abcdef", ord("d"))
+    >>> strchr('abcdef', ord('d'))
     8059983
     >>> strchr.restype = c_char_p # c_char_p is a pointer to a string
-    >>> strchr("abcdef", ord("d"))
+    >>> strchr('abcdef', ord('d'))
     'def'
-    >>> print(strchr("abcdef", ord("x")))
+    >>> print(strchr('abcdef', ord('x')))
     None
     >>>
 
@@ -196,7 +193,7 @@ An example:
     >>> s = create_string_buffer('\x00' * 32)
     >>> print(i.value, f.value, repr(s.value))
     0 0.0 ''
-    >>> libc.sscanf("1 3.14 Hello", "%d %f %s",
+    >>> libc.sscanf('1 3.14 Hello', '%d %f %s',
     ...             byref(i), byref(f), s)
     3
     >>> print(i.value, f.value, repr(s.value))
@@ -211,16 +208,16 @@ An example:
     >>> strchr = libc.strchr
     >>> strchr.restype = c_char_p
     >>> strchr.argtypes = [c_char_p, c_char]
-    >>> strchr("abcdef", "d")
+    >>> strchr('abcdef', 'd')
     'def'
-    >>> strchr("abcdef", "def")
+    >>> strchr('abcdef', 'def')
     Traceback (most recent call last):
       File "<stdin>", line 1, in ?
     ArgumentError: argument 2: exceptions.TypeError: \
             one character string expected
-    >>> print(strchr("abcdef", "x"))
+    >>> print(strchr('abcdef', 'x'))
     None
-    >>> strchr("abcdef", "d")
+    >>> strchr('abcdef', 'd')
     'def'
     >>>
 
@@ -267,9 +264,9 @@ Use ctypes to generate pseudo-random numbers using a `random()` function from yo
 
     !python
     >>> import ctypes as c
-    >>> d = c.CDLL("libc.so.6")
+    >>> d = c.CDLL('libc.so.6')
     >>> RAND_MAX = 2.0 ** 31
-    >>> [d.rand() / RAND_MAX for _ in xrange(10)]
+    >>> [d.rand() / RAND_MAX for _ in range(10)]
     [0.6288709244690835,
      0.36478447262197733,
      0.5134009099565446,

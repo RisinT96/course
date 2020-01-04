@@ -13,7 +13,7 @@ Allows printf style variadic functions.
 Usage example:
 
 	!python
-	logger.info("%s, I am your %s", jedi, relationship)
+	logger.info('%s, I am your %s', jedi, relationship)
 
 Implementation example:
 

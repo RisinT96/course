@@ -113,7 +113,7 @@ The `__getattr__` method is called for non-existent members.
     !python
     class Foo(object):
         def __getattr__(self, name):
-            print('getting {}'.format(name))
+            print(f'getting {name}')
             return len(name)
 
     >>> f = Foo()
@@ -136,7 +136,7 @@ The `__getattribute__` method is called for any members.
     !python
     class Foo(object):
         def __getattribute__(self, name):
-            print('getting {}'.format(name))
+            print(f'getting {name}')
             return len(name)
 
     >>> f = Foo()
@@ -160,7 +160,7 @@ The `__setattr__` method is called when setting all members.
     !python
     class Foo(object):
         def __setattr__(self, name, value):
-            print('setting {} = {}'.format(name, value))
+            print(f'setting {name} = {value}')
 
     >>> f = Foo()
     >>> f.x = 1

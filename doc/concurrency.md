@@ -108,7 +108,7 @@ attempts, and writes it back to the client.
                 pass  # simulate request processing
             dt = time.time() - t
             self.n = tmp + 1
-            conn.sendall('<{0}, took {1:.1f} ms>\n'.format(self.n, dt*1e3))
+            conn.sendall(f'<{self.n}, took {dt*1e3:.1f} ms>\n')
 
 ---
 
@@ -142,7 +142,7 @@ attempts, and writes it back to the client.
                 pass  # simulate request processing
             dt = time.time() - t
             self.n = tmp + 1
-            conn.sendall('<{0}, took {1:.1f} ms>\n'.format(self.n, dt*1e3))
+            conn.sendall(f'<{self.n}, took {dt*1e3:.1f} ms>\n')
 
 ---
 
@@ -277,7 +277,7 @@ It's much better than the default thread behaviour.
 
         def handle(self, conn, peer):
             self.n = self.n + 1
-            conn.sendall('<{0}>\n'.format(self.n))
+            conn.sendall(f'<{self.n}>\n')
             conn.close()
 ---
 

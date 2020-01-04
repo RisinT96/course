@@ -101,14 +101,14 @@ Can you implement it using the information you see here?
 	!python
 	def debug(func):
 		def new_func(*a, **k):
-			print("{} got ".format(func.__name__), a, k)
+			print(f'{func.__name__} got {a} {k}')
 			try:
 				ret = func(*a, **k)
 			except Exception as e:
-				print("raised: {}".format(e))
+				print(f'raised: {e}')
 				raise
 			else:
-				print("returned: {}".format(ret))
+				print(f'returned: {ret}')
 				return ret
 		return new_func
 

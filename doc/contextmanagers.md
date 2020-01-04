@@ -43,16 +43,16 @@ A context manager provides methods for the entrance and exit of a context.
 
 	class LockContext(object):
 	    def __init__(self):
-			print("init")
+			print('init')
 			self._lock = Lock()
 		def is_locked(self):
 			return self._lock.locked()
 		def __enter__(self):
-			print("locking..")
+			print('locking..')
 			self._lock.acquire()
 			return self
 		def __exit__(self, exc_type, exc_val, exc_tb):
-			print("unlocking..")
+			print('unlocking..')
 			self._lock.release()
 
 ---
@@ -73,7 +73,7 @@ A Context manager can swallow exceptions (prevent propagation) by returning `Tru
 			pass
 
 		def __exit__(self, exc_type, exc_val, exc_tb):
-			print("Ha Ha")
+			print('Ha Ha')
 			return True # indicates exception has been handled and shouldn't propagate
 
 ---
@@ -125,7 +125,7 @@ The exception information is passed by simply throwing the exception into the ge
 			if type(e) not in exception_types:
 				raise
 			else:
-				print("ignoring exception :{}".format(e))
+				print(f'ignoring exception :{e}')
 
 ---
 
