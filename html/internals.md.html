@@ -1444,8 +1444,8 @@ aside {
             <header><h2>locals and globals</h2></header>
             
             
-            <section><p>There are two types of dictionaries designated for variable lookup: locals() returns local variables,
-globals() returns global variables.</p>
+            <section><p>There are two types of dictionaries designated for variable lookup: <code>locals()</code> returns local variables,
+<code>globals()</code> returns global variables.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -1473,14 +1473,14 @@ globals() returns global variables.</p>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="n">global_test</span><span class="p">)</span>
 <span class="mi">2</span>           <span class="mi">0</span> <span class="n">LOAD_GLOBAL</span>              <span class="mi">0</span> <span class="p">(</span><span class="n">glob</span><span class="p">)</span>
-            <span class="mi">3</span> <span class="n">RETURN_VALUE</span>
+            <span class="mi">2</span> <span class="n">RETURN_VALUE</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="n">local_test</span><span class="p">)</span>
-<span class="mi">2</span>           <span class="mi">0</span> <span class="n">LOAD_CONST</span>               <span class="mi">1</span> <span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-            <span class="mi">3</span> <span class="n">STORE_FAST</span>               <span class="mi">0</span> <span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+<span class="mi">2</span>           <span class="mi">0</span> <span class="n">LOAD_CONST</span>               <span class="mi">1</span> <span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+            <span class="mi">2</span> <span class="n">STORE_FAST</span>               <span class="mi">0</span> <span class="p">(</span><span class="n">loc</span><span class="p">)</span>
 
-<span class="mi">3</span>           <span class="mi">6</span> <span class="n">LOAD_FAST</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">loc</span><span class="p">)</span>
-            <span class="mi">9</span> <span class="n">RETURN_VALUE</span>
+<span class="mi">3</span>           <span class="mi">4</span> <span class="n">LOAD_FAST</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+            <span class="mi">6</span> <span class="n">RETURN_VALUE</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1610,7 +1610,7 @@ and therefore, local variable access is faster.</p></section>
 14
 15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;getting {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;getting {name}&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
@@ -1672,7 +1672,7 @@ and therefore, local variable access is faster.</p></section>
 15
 16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;getting {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;getting {name}&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
@@ -1730,7 +1730,7 @@ and therefore, local variable access is faster.</p></section>
 10
 11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;setting {} = {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;setting {name} = {value}&#39;</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1828,12 +1828,12 @@ and therefore, local variable access is faster.</p></section>
 4
 5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CaseInsensitive</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">value</span><span class="p">)</span>
     <span class="k">def</span> <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
 </pre></div>
 </td></tr></table>
-<p>Note that we are using <code>object</code> because looking at <code>self.__dict__</code>
+<p>Note that we are using <code>super()</code> because looking at <code>self.__dict__</code>
 will trigger an infinite recursion of <code>__getattr__/__setattr__</code>.</p></section>
             
           </div>
@@ -2502,14 +2502,17 @@ Python uses an algorithm called <code>C3</code>.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">site</span>
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">site</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">site</span><span class="o">.</span><span class="n">getsitepackages</span><span class="p">()</span>
-<span class="p">[</span><span class="s1">&#39;/usr/local/lib/python2.7/dist-packages&#39;</span><span class="p">,</span>
- <span class="s1">&#39;/usr/lib/python2.7/dist-packages&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;/usr/local/lib/python3.7/dist-packages&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;/usr/lib/python3/dist-packages&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;/usr/lib/python3.7/dist-packages&#39;</span><span class="p">]</span>
 </pre></div>
 </td></tr></table>
 <p>Finally python looks at the stdlib directory, On Linux, it's
-<code>/usr/lib/python2.7/</code></p>
+<code>/usr/lib/python3.7</code></p>
+<p>(In virtual environments there are more steps, and <code>site.getsitepackages()</code> might not be available)</p>
 <p>After a module has been found and compiled it is stored in <code>sys.modules</code>.</p>
 <p>Actually, the first step of the import process is looking for the module name in <code>sys.modules</code>, making sure each module is compiled and invoked once.</p></section>
             
@@ -2579,18 +2582,16 @@ Python uses an algorithm called <code>C3</code>.</p>
             
             <section><p><code>exec</code> - execute code:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">exec</span><span class="p">(</span><span class="s2">&quot;print 10&quot;</span><span class="p">)</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">exec</span><span class="p">(</span><span class="s1">&#39;print(10)&#39;</span><span class="p">)</span>
 <span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">execfile</span><span class="p">(</span><span class="s2">&quot;/tmp/bla.py&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table>
 <p><code>eval</code> - evaluate an expression:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;1 + 1&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table>
-<p>NOTE: <code>eval</code> and <code>exec</code> can be a serious security risk, try to avoid them.</p>
-<p>NOTE2: <code>eval</code>, <code>exec</code> and <code>execfile</code> all receive optional <code>locals</code> and <code>globals</code> arguments. by passing new dictionaries we can run the code in a partially isolated environment. BUT it still doesn't count as safe.</p></section>
+<p>NOTE: <code>eval</code> and <code>exec</code> can be a serious security risk, try to avoid using them.</p>
+<p>NOTE2: <code>eval</code> and <code>exec</code> receive optional <code>locals</code> and <code>globals</code> arguments. By passing new dictionaries we can run the code in a partially isolated environment. BUT it still doesn't count as safe.</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -2787,10 +2788,10 @@ The hash function maps a value (lets say, a string) to a number. The same string
 10
 11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_stack</span><span class="p">():</span>
 <span class="o">...</span>     <span class="n">frame</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">_getframe</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># first frame</span>
-<span class="o">...</span>     <span class="k">print</span> <span class="n">frame</span>
-<span class="o">...</span>     <span class="k">print</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_code</span> <span class="c1"># the code object</span>
-<span class="o">...</span>     <span class="k">print</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_locals</span> <span class="c1"># locals()</span>
-<span class="o">...</span>     <span class="k">print</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_back</span>  <span class="c1"># previous frame</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">f_code</span><span class="p">)</span> <span class="c1"># the code object</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">)</span> <span class="c1"># locals()</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">f_back</span><span class="p">)</span>  <span class="c1"># previous frame</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">print_stack</span><span class="p">()</span>
 <span class="o">&lt;</span><span class="n">frame</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x100379df0</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">code</span> <span class="nb">object</span> <span class="n">print_stack</span> <span class="n">at</span> <span class="mh">0x100437830</span><span class="p">,</span> <span class="nb">file</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="o">&gt;</span>
@@ -2900,7 +2901,7 @@ The hash function maps a value (lets say, a string) to a number. The same string
 5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
     <span class="k">pass</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">func</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="n">function</span> <span class="n">__main__</span><span class="o">.</span><span class="n">func</span><span class="o">&gt;</span>
 </pre></div>
 </td></tr></table>
@@ -2914,7 +2915,7 @@ The hash function maps a value (lets say, a string) to a number. The same string
     <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">A</span><span class="p">()</span><span class="o">.</span><span class="n">foo</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">()</span><span class="o">.</span><span class="n">foo</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="n">bound</span> <span class="n">method</span> <span class="n">A</span><span class="o">.</span><span class="n">foo</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">A</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x101e4aed0</span><span class="o">&gt;&gt;</span>
 </pre></div>
 </td></tr></table></section>
@@ -2955,9 +2956,9 @@ The hash function maps a value (lets say, a string) to a number. The same string
 7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">foo</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">foo</span><span class="p">()</span> <span class="c1"># where is &#39;self&#39;?</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">foo</span><span class="o">.</span><span class="n">im_func</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">im_func</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="n">function</span> <span class="n">__main__</span><span class="o">.</span><span class="n">foo</span><span class="o">&gt;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">foo</span><span class="o">.</span><span class="n">im_self</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">foo</span><span class="o">.</span><span class="n">im_self</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">A</span> <span class="n">at</span> <span class="mh">0x101e4afd0</span><span class="o">&gt;</span>
 </pre></div>
 </td></tr></table>
@@ -3004,9 +3005,9 @@ The hash function maps a value (lets say, a string) to a number. The same string
 5
 6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span><span class="o">.</span><span class="n">foo</span>
 <span class="o">&lt;</span><span class="n">unbound</span> <span class="n">method</span> <span class="n">A</span><span class="o">.</span><span class="n">foo</span><span class="o">&gt;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">A</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">im_self</span> <span class="c1"># no instance</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">im_self</span><span class="p">)</span> <span class="c1"># no instance</span>
 <span class="bp">None</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">A</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">im_class</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">im_class</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="k">class</span> <span class="nc">__main__</span><span class="o">.</span><span class="n">A</span><span class="o">&gt;</span>
 </pre></div>
 </td></tr></table>
@@ -3207,7 +3208,7 @@ by defining a list of member names, a small and fixed amount of memory per objec
 8
 9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[]):</span>
     <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">x</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="p">()</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="p">()</span>
@@ -3258,7 +3259,7 @@ by defining a list of member names, a small and fixed amount of memory per objec
     <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">x</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="p">()</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="p">()</span>
@@ -3353,7 +3354,7 @@ by defining a list of member names, a small and fixed amount of memory per objec
 <span class="o">...</span>         <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="n">add</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">add5</span> <span class="o">=</span> <span class="n">addx</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">add5</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">add5</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 <span class="mi">8</span>
 </pre></div>
 </td></tr></table>

@@ -1263,7 +1263,7 @@ aside {
         document.addEventListener('keydown', checkModifierKeyDown, false);
         document.addEventListener('DOMMouseScroll', handleWheel, false);
 
-        window.onmousewheel = document.onmousewheel = handleWheel;
+        document.onmousewheel = handleWheel;
         window.onresize = expandSlides;
 
         for (var i = 0, el; el = slides[i]; i++) {
@@ -1353,12 +1353,12 @@ aside {
 <span class="o">&gt;&gt;&gt;</span> <span class="k">try</span><span class="p">:</span>
 <span class="o">&gt;&gt;&gt;</span>     <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="o">&gt;&gt;&gt;</span>     <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;caught {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
-<span class="n">caught</span> <span class="n">integer</span> <span class="n">division</span> <span class="ow">or</span> <span class="n">modulo</span> <span class="n">by</span> <span class="n">zero</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;caught {e}&#39;</span><span class="p">)</span>
+<span class="n">caught</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
   <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-19-dd7b8f0dab6f&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
     <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
-<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">integer</span> <span class="n">division</span> <span class="ow">or</span> <span class="n">modulo</span> <span class="n">by</span> <span class="n">zero</span>
+<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
 </pre></div>
 </td></tr></table>
 <p>Why isn't the info printed?</p></section>

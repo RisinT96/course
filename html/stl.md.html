@@ -1263,7 +1263,7 @@ aside {
         document.addEventListener('keydown', checkModifierKeyDown, false);
         document.addEventListener('DOMMouseScroll', handleWheel, false);
 
-        window.onmousewheel = document.onmousewheel = handleWheel;
+        document.onmousewheel = handleWheel;
         window.onresize = expandSlides;
 
         for (var i = 0, el; el = slides[i]; i++) {
@@ -1771,11 +1771,13 @@ aside {
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grep</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">input_file</span><span class="p">):</span>
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grep</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">input_file</span><span class="p">):</span>
     <span class="n">line</span> <span class="o">=</span> <span class="n">input_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
     <span class="k">while</span> <span class="n">line</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
             <span class="k">yield</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">input_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">input_file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -1789,8 +1791,8 @@ aside {
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grep</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="s2">&quot;python grep.py {} {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">path</span><span class="p">),</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grep</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;python grep.py {pattern} {path}&#39;</span><span class="p">,</span>
                             <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
                             <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
@@ -1836,8 +1838,8 @@ aside {
 <span class="n">chars</span> <span class="ow">in</span> <span class="n">spam</span> <span class="ow">and</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">eggs</span><span class="p">:</span> <span class="n">apm</span>
 <span class="n">chars</span> <span class="ow">in</span> <span class="n">eggs</span> <span class="ow">and</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">spam</span><span class="p">:</span> <span class="n">eg</span>
 <span class="n">chars</span> <span class="ow">in</span> <span class="n">one</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">the</span> <span class="n">other</span><span class="p">:</span> <span class="n">aegmp</span>
-<span class="n">chars</span> <span class="ow">in</span> <span class="n">both</span> <span class="n">strings</span><span class="p">:</span>  <span class="n">s</span>
-<span class="nb">all</span> <span class="n">chars</span><span class="p">:</span>  <span class="n">apsegm</span>
+<span class="n">chars</span> <span class="ow">in</span> <span class="n">both</span> <span class="n">strings</span><span class="p">:</span> <span class="n">s</span>
+<span class="nb">all</span> <span class="n">chars</span><span class="p">:</span> <span class="n">apsegm</span>
 <span class="n">spam</span> <span class="n">contained</span> <span class="ow">in</span> <span class="n">eggs</span><span class="p">:</span> <span class="bp">False</span>
 <span class="n">eggs</span> <span class="n">contained</span> <span class="ow">in</span> <span class="n">spam</span><span class="p">:</span> <span class="bp">False</span>
 </pre></div>
@@ -1885,13 +1887,13 @@ aside {
     <span class="n">a_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">b_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
     <span class="n">join_set</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;chars in {} and not in {}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">join_set</span><span class="p">(</span><span class="n">a_set</span> <span class="o">-</span> <span class="n">b_set</span><span class="p">)))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;chars in {} and not in {}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">join_set</span><span class="p">(</span><span class="n">b_set</span> <span class="o">-</span> <span class="n">a_set</span><span class="p">)))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;chars in one and not the other:&quot;</span><span class="p">,</span> <span class="n">join_set</span><span class="p">(</span><span class="n">a_set</span> <span class="o">^</span> <span class="n">b_set</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;chars in both strings: &quot;</span><span class="p">,</span> <span class="n">join_set</span><span class="p">(</span><span class="n">a_set</span> <span class="o">&amp;</span> <span class="n">b_set</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;all chars: &quot;</span><span class="p">,</span> <span class="n">join_set</span><span class="p">(</span><span class="n">a_set</span> <span class="o">|</span> <span class="n">b_set</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{} contained in {}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a_set</span> <span class="o">&lt;=</span> <span class="n">b_set</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{} contained in {}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b_set</span> <span class="o">&lt;=</span> <span class="n">a_set</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;chars in {a} and not in {b}: {join_set(a_set - b_set)}&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;chars in {b} and not in {a}: {join_set(b_set - a_set)}&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;chars in one and not the other: {join_set(a_set ^ b_set)}&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;chars in both strings: {join_set(a_set &amp; b_set)}&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;all chars: {join_set(a_set | b_set)}&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{a} contained in {b}: {a_set &lt;= b_set}&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{b} contained in {a}: {b_set &lt;= a_set}&#39;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1923,11 +1925,13 @@ aside {
             <header><h2>StringIO</h2></header>
             
             
-            <section><p>The <code>StringIO</code> module has two use cases:</p>
+            <section><p>The <code>io.StringIO</code> and <code>io.BytesIO</code> classes have two use cases:</p>
 <h3>Mimic a <code>file</code> object</h3>
 <p>The <code>StringIO.StringIO</code> object implements the file object interface and behaves as an in-memory file.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ungzip</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="k">def</span> <span class="nf">ungzip</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">StringIO</span><span class="p">(</span><span class="n">string</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </pre></div>
 </td></tr></table>
@@ -1936,8 +1940,7 @@ aside {
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_grep</span><span class="p">():</span>
     <span class="k">assert</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;foobar&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">grep</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">(</span><span class="s2">&quot;foo</span><span class="se">\n</span><span class="s2">bar</span><span class="se">\n</span><span class="s2">foobar&quot;</span><span class="p">))</span>
 </pre></div>
-</td></tr></table>
-<p>Note: the <code>cStringIO</code> module is a (faster) C implementation of StringIO.</p></section>
+</td></tr></table></section>
             
           </div>
           <div class="presenter_notes">
@@ -2028,19 +2031,19 @@ aside {
             <header><h2>pickle</h2></header>
             
             
-            <section><p><code>pickle</code> or it's C implementation <code>cPickle</code> provides serialization functions for python objects:</p>
+            <section><p><code>pickle</code> provides serialization functions for python objects:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="s1">&#39;(lp1</span><span class="se">\n</span><span class="s1">I1</span><span class="se">\n</span><span class="s1">aI2</span><span class="se">\n</span><span class="s1">a.&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x80\x03</span><span class="s1">]q</span><span class="se">\x00</span><span class="s1">(K</span><span class="se">\x01</span><span class="s1">K</span><span class="se">\x02</span><span class="s1">e.&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </td></tr></table>
 <p>It is used throughout the standard library (e.g. <code>multiprocessing</code>).</p>
 <p>Not all objects are pickleable: sockets, methods (not functions, methods), etc'.</p>
-<p>If your object is not pickleable, or you want to pickle it in a custom way you can define methods for <code>pickle</code> to use: <code>__getstate__</code> and <code>__setstate__</code>.</p></section>
+<p>If your object is not pickleable, or you want to pickle it in a custom way, you can define methods for <code>pickle</code> to use: <code>__getstate__</code> and <code>__setstate__</code>.</p></section>
             
           </div>
           <div class="presenter_notes">

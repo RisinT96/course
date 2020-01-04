@@ -1263,7 +1263,7 @@ aside {
         document.addEventListener('keydown', checkModifierKeyDown, false);
         document.addEventListener('DOMMouseScroll', handleWheel, false);
 
-        window.onmousewheel = document.onmousewheel = handleWheel;
+        document.onmousewheel = handleWheel;
         window.onresize = expandSlides;
 
         for (var i = 0, el; el = slides[i]; i++) {
@@ -1335,7 +1335,7 @@ aside {
             <section><p>Allows printf style variadic functions.</p>
 <p><strong>variadic function - a function that gets a variable number of arguments.</strong></p>
 <p>Usage example:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">, I am your </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">jedi</span><span class="p">,</span> <span class="n">relationship</span><span class="p">)</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">, I am your </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">jedi</span><span class="p">,</span> <span class="n">relationship</span><span class="p">)</span>
 </pre></div>
 </td></tr></table>
 <p>Implementation example:</p>
@@ -1343,7 +1343,7 @@ aside {
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span> <span class="c1"># you can call it in a different name if you want, the * is a must</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span> <span class="c1"># you can give it a different name if you want, the * is required</span>
     <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="n">args</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -1377,7 +1377,7 @@ aside {
           <div class="inner">
             
             
-            <section><p>The reverse operation - pass a sequence as the arguments:</p>
+            <section><p>The reverse operation - pass a sequence's elements as separate arguments:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3

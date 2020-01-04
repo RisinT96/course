@@ -1263,7 +1263,7 @@ aside {
         document.addEventListener('keydown', checkModifierKeyDown, false);
         document.addEventListener('DOMMouseScroll', handleWheel, false);
 
-        window.onmousewheel = document.onmousewheel = handleWheel;
+        document.onmousewheel = handleWheel;
         window.onresize = expandSlides;
 
         for (var i = 0, el; el = slides[i]; i++) {
@@ -1792,11 +1792,13 @@ aside {
             <header><h2>StringIO</h2></header>
             
             
-            <section><p>The <code>StringIO</code> module has two use cases:</p>
+            <section><p>The <code>io.StringIO</code> and <code>io.BytesIO</code> classes have two use cases:</p>
 <h3>Mimic a <code>file</code> object</h3>
 <p>The <code>StringIO.StringIO</code> object implements the file object interface and behaves as an in-memory file.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ungzip</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="k">def</span> <span class="nf">ungzip</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">StringIO</span><span class="p">(</span><span class="n">string</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </pre></div>
 </td></tr></table>
@@ -1897,19 +1899,19 @@ aside {
             <header><h2>pickle</h2></header>
             
             
-            <section><p><code>pickle</code> or it's C implementation <code>cPickle</code> provides serialization functions for python objects:</p>
+            <section><p><code>pickle</code> provides serialization functions for python objects:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="s1">&#39;(lp1</span><span class="se">\n</span><span class="s1">I1</span><span class="se">\n</span><span class="s1">aI2</span><span class="se">\n</span><span class="s1">a.&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x80\x03</span><span class="s1">]q</span><span class="se">\x00</span><span class="s1">(K</span><span class="se">\x01</span><span class="s1">K</span><span class="se">\x02</span><span class="s1">e.&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </td></tr></table>
 <p>It is used throughout the standard library (e.g. <code>multiprocessing</code>).</p>
 <p>Not all objects are pickleable: sockets, methods (not functions, methods), etc'.</p>
-<p>If your object is not pickleable, or you want to pickle it in a custom way you can define methods for <code>pickle</code> to use: <code>__getstate__</code> and <code>__setstate__</code>.</p></section>
+<p>If your object is not pickleable, or you want to pickle it in a custom way, you can define methods for <code>pickle</code> to use: <code>__getstate__</code> and <code>__setstate__</code>.</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -1991,7 +1993,7 @@ aside {
             <section><ul>
 <li><code>itertools</code> - generators versions to existing functions and more: izip, islice, imap, ifilter, cycle, repeat, chain, groupby.</li>
 <li><code>array</code> - lists to/from C arrays. good for interacting with the OS.</li>
-<li><code>struct</code> - build and unpack C types and structs.</li>
+<li><code>struct</code> - build and unpack C types and structs -&gt; consider using <code>construct</code> module (by Tomer Filiba)</li>
 <li><code>argparse</code> - from 2.7. if not available can be installed as package.</li>
 <li><code>brownie</code> - not in the stdlib. contains many nice utilities like <code>ImmutableDict</code>.</li>
 </ul></section>
@@ -2240,7 +2242,7 @@ aside {
         <div class="slide has_code slide-21">
           <div class="inner">
             
-            <header><h3>Exercise 2 - echo server</h3></header>
+            <header><h3>Exercise 8 - echo server</h3></header>
             
             
             <section><p>Implement an echo server, which upper cases every input. It should support multiple clients concurrently. Remember the limitation on number of threads. consider using select/poll.</p>

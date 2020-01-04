@@ -1263,7 +1263,7 @@ aside {
         document.addEventListener('keydown', checkModifierKeyDown, false);
         document.addEventListener('DOMMouseScroll', handleWheel, false);
 
-        window.onmousewheel = document.onmousewheel = handleWheel;
+        document.onmousewheel = handleWheel;
         window.onresize = expandSlides;
 
         for (var i = 0, el; el = slides[i]; i++) {
@@ -1854,7 +1854,7 @@ Running 'cont' or 'step' will restart the program
  11
  12     if __name__ == '__main__':
  13         import sys
- 14         args = map(float, sys.argv[1:])
+ 14         args = list(map(float, sys.argv[1:]))
 
 (Pdb) p res
 1.3333333333333333

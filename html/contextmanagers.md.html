@@ -1263,7 +1263,7 @@ aside {
         document.addEventListener('keydown', checkModifierKeyDown, false);
         document.addEventListener('DOMMouseScroll', handleWheel, false);
 
-        window.onmousewheel = document.onmousewheel = handleWheel;
+        document.onmousewheel = handleWheel;
         window.onresize = expandSlides;
 
         for (var i = 0, el; el = slides[i]; i++) {
@@ -1337,7 +1337,7 @@ aside {
 <span class="k">finally</span><span class="p">:</span>
     <span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
-<span class="k">with</span> <span class="nb">file</span><span class="p">(</span><span class="s1">&#39;/tmp/bla&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/tmp/bla&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
     <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span> <span class="c1"># even though an exception is raised the file is closed</span>
 
@@ -1408,16 +1408,16 @@ aside {
 
 <span class="k">class</span> <span class="nc">LockContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;init&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">is_locked</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">locked</span><span class="p">()</span>
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;locking..&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;locking..&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span>
     <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;unlocking..&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;unlocking..&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></section>
@@ -1474,7 +1474,7 @@ aside {
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Ha Ha&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Ha Ha&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">True</span> <span class="c1"># indicates exception has been handled and shouldn&#39;t propagate</span>
 </pre></div>
 </td></tr></table></section>
@@ -1619,7 +1619,7 @@ aside {
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exception_types</span><span class="p">:</span>
             <span class="k">raise</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;ignoring exception :{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;ignoring exception :{e}&#39;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1660,14 +1660,14 @@ aside {
 7
 8
 9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">benchmark</span><span class="p">():</span>
-    <span class="k">with</span> <span class="n">Timed</span><span class="p">(</span><span class="s2">&quot;list comprehension&quot;</span><span class="p">):</span>
-        <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)]</span>
-    <span class="k">with</span> <span class="n">Timed</span><span class="p">(</span><span class="s2">&quot;map&quot;</span><span class="p">):</span>
-        <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">))</span>
+    <span class="k">with</span> <span class="n">Timed</span><span class="p">(</span><span class="s1">&#39;list comprehension&#39;</span><span class="p">):</span>
+        <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)]</span>
+    <span class="k">with</span> <span class="n">Timed</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">):</span>
+        <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)))</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">benchmark</span><span class="p">()</span>
-<span class="nb">list</span> <span class="n">comprehension</span> <span class="n">took</span> <span class="mf">0.0324079990387</span>
-<span class="nb">map</span> <span class="n">took</span> <span class="mf">0.0171928405762</span>
+<span class="nb">list</span> <span class="n">comprehension</span> <span class="n">took</span> <span class="mf">1.707427</span><span class="n">ms</span>
+<span class="nb">map</span> <span class="n">took</span> <span class="mf">1.455476</span><span class="n">ms</span>
 </pre></div>
 </td></tr></table></section>
             
@@ -1713,7 +1713,7 @@ aside {
 <span class="k">def</span> <span class="nf">Timed</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
     <span class="n">stime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="k">yield</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{} took {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">stime</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;{obj} took {time.time() - stime:.6f}ms&#39;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></section>
             

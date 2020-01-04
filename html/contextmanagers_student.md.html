@@ -1263,7 +1263,7 @@ aside {
         document.addEventListener('keydown', checkModifierKeyDown, false);
         document.addEventListener('DOMMouseScroll', handleWheel, false);
 
-        window.onmousewheel = document.onmousewheel = handleWheel;
+        document.onmousewheel = handleWheel;
         window.onresize = expandSlides;
 
         for (var i = 0, el; el = slides[i]; i++) {
@@ -1337,7 +1337,7 @@ aside {
 <span class="k">finally</span><span class="p">:</span>
     <span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
-<span class="k">with</span> <span class="nb">file</span><span class="p">(</span><span class="s1">&#39;/tmp/bla&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/tmp/bla&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
     <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span> <span class="c1"># even though an exception is raised the file is closed</span>
 
@@ -1613,13 +1613,13 @@ aside {
 8
 9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">benchmark</span><span class="p">():</span>
     <span class="k">with</span> <span class="n">Timed</span><span class="p">(</span><span class="s2">&quot;list comprehension&quot;</span><span class="p">):</span>
-        <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)]</span>
+        <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)]</span>
     <span class="k">with</span> <span class="n">Timed</span><span class="p">(</span><span class="s2">&quot;map&quot;</span><span class="p">):</span>
-        <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">))</span>
+        <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)))</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">benchmark</span><span class="p">()</span>
-<span class="nb">list</span> <span class="n">comprehension</span> <span class="n">took</span> <span class="mf">0.0324079990387</span>
-<span class="nb">map</span> <span class="n">took</span> <span class="mf">0.0171928405762</span>
+<span class="nb">list</span> <span class="n">comprehension</span> <span class="n">took</span> <span class="mf">1.707427</span><span class="n">ms</span>
+<span class="nb">map</span> <span class="n">took</span> <span class="mf">1.455476</span><span class="n">ms</span>
 </pre></div>
 </td></tr></table></section>
             
