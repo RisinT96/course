@@ -53,8 +53,8 @@ And the module cache (makes sure modules are loaded once) is also a dict:
 
 ## locals and globals
 
-There are two types of dictionaries designated for variable lookup: locals() returns local variables,
-globals() returns global variables.
+There are two types of dictionaries designated for variable lookup: `locals()` returns local variables,
+`globals()` returns global variables.
 
 	!python
 	glob = 100
