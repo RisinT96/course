@@ -1,6 +1,8 @@
 /.idea/*
-*/__pycache__/*
+/__pycache__/*
 /.ipynb_checkpoints/*
 *.lock
 *.coverage
 /htmlcov/*
+*/__pycache__/*
+
