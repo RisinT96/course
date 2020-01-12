@@ -11,7 +11,6 @@ numpy = "*"
 scipy = "*"
 matplotlib = "*"
 jupyter = "*"
-pandas = "*"
 rpyc = "*"
 landslide = "*"
 pudb = "*"
@@ -20,6 +19,10 @@ flamegraph = {git = "https://github.com/evanhempel/python-flamegraph.git"}
 pyprof2calltree = "*"
 gevent = "*"
 altair = "*"
+pandas = "*"
+pyqt5 = "*"
+coverage = "*"
+cookiecutter = "*"
 
 [requires]
 python_version = "3.7"
