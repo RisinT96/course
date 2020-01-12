@@ -4,7 +4,7 @@
 
 Each object can be referenced by several other objects. Each object has a member indicating what the current ref count is. once the ref count reaches zero, the garbage collector destroys it.
 
-When the garbage collector destroys an object it calls it's `__del__` method.
+When the garbage collector destroys an object it calls its `__del__` method.
 
 	!python
 	class A(object):

@@ -110,16 +110,17 @@ TIP: The `namedtuple` takes less memory than regular objects because it doesn't 
 	>>> char_count("abbcccdddd")
 	{'a': 1, 'b': 2, 'c': 3, 'd': 4}
 
-	>>> word_count("How much wood can a woodchuck chuck if a woodchuck would chuck wood")
+	>>> word_count("How much wood would a woodchuck chuck if a woodchuck could"
+	               " chuck wood")
 	{'How': 1,
+	 'much': 1,
+	 'wood': 2,
+	 'would': 1,
 	 'a': 2,
-     'can': 1,
-     'chuck': 2,
-     'if': 1,
-     'much': 1,
-     'wood': 2,
-     'woodchuck': 2,
-     'would': 1}
+	 'woodchuck': 2,
+	 'chuck': 2,
+	 'if': 1,
+	 'could': 1}
 
 Bonus: add an `int` argument called `most_common` for returning only the most common char/word.
 

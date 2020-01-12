@@ -12,7 +12,8 @@ Find all the prime numbers until 'end' in a given amount of 'threads'.
 
 For each stage, run it on a multi-code CPU and measure the performance gain when using 5 workers vs 1 worker.
 
-1) Use `threading.Thread`. Save your work. Try running with end=5000 and killing the the threads with Ctrl+C while they're running? Did it work?
+1) Use `threading.Thread`. Save your work. Try running with end=5000 and killing
+the threads with Ctrl+C while they're running. Did it work?
 
 2) Use `multiprocessing.dummy.Pool`.
 
