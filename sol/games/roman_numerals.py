@@ -15,6 +15,21 @@ int_to_roman_dict = {
     4: 'IV',
     1: 'I',
 }
+roman_to_int_dict = {
+    'M': 1000,
+    'CM': 900,
+    'D': 500,
+    'CD': 400,
+    'C': 100,
+    'XC': 90,
+    'L': 50,
+    'XL': 40,
+    'X': 10,
+    'IX': 9,
+    'V': 5,
+    'IV': 4,
+    'I': 1,
+}
 
 int_to_roman_sorted_list = sorted(int_to_roman_dict.items(), reverse=True)
 
@@ -43,6 +58,12 @@ def toroman(num):
 
     return ''.join(output)
 
+
+def fromroman(roman_str):
+    if not isinstance(roman_str, str):
+        raise TypeError(f'Expected {type(str)}, got {type(num)}')
+
+    pass
 
 print(toroman(1000))
 print(toroman(100))
